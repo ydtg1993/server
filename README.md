@@ -83,6 +83,7 @@ docker配置搭建php环境
 `docker-php-ext-install  xdebug`
 
 [如果报错提示xdebug不存在就下载对应版本xdebug扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
+`tar zxvf /server/php_lib/xdebug-2.6.1.tgz`
 
 `sudo docker cp /server/php_lib/xdebug-2.6.1 myphp:/usr/src/php/ext/xdebug`
 
