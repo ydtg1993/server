@@ -6,7 +6,9 @@ docker配置搭建php环境
 `sudo docker pull php:7.2-fpm`   冒号后选择版本
 
 `sudo docker pull nginx`
+
 `sudo docker pull mysql`
+
 `sudo docker pull redis`
 
 `sudo docker images`  查看已下载的所有镜像
