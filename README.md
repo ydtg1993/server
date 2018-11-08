@@ -24,15 +24,15 @@ docker配置搭建php环境
     -v 将容器内路径挂载到宿主机路径
     --privileged=true 给容器特权,在挂载目录后容器可以访问目录以下的文件或者目录
     
+ [运行php容器]
+
+`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm`
+
 [运行nginx容器] 
 
 `sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
 
     -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
-
-[运行php容器]
-
-`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm`
 
 [运行mysql容器]
 
