@@ -23,7 +23,7 @@ docker配置搭建php环境
     --name 为容器指定一个名字
     -v 将容器内路径挂载到宿主机路径
     --privileged=true 给容器特权,在挂载目录后容器可以访问目录以下的文件或者目录
-    
+    --link可以用来链接2个容器，使得源容器（被链接的容器）和接收容器（主动去链接的容器）之间可以互相通信，解除了容器之间通信对容器IP的依赖
  [运行mysql容器]
 
 `sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql`
