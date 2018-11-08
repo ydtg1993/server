@@ -31,10 +31,6 @@ docker配置搭建php环境
 
     -MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     
- [运行redis容器]
-
-`sudo docker run --name myredis -p 6379:6379 -d redis` 
-    
  [运行php容器]
 
 `sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm`
@@ -45,6 +41,9 @@ docker配置搭建php环境
 
     -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
 
+ [运行redis容器]
+
+`sudo docker run --name myredis -p 6379:6379 -d redis` 
     
 #### 查看所有容器
 `sudo docker ps  -a` 
