@@ -1,7 +1,7 @@
 # server
 docker配置搭建php环境
 
-###  0.配置拉取server 放到服务器根目录
+###  0.git拉取server项目 放到服务器根目录
 
 #### 1.下载镜像
 `sudo docker pull php:7.2-fpm`   冒号后选择版本
