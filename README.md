@@ -27,7 +27,7 @@ docker配置搭建php环境
     --link可以用来链接2个容器，使得源容器（被链接的容器）和接收容器（主动去链接的容器）之间可以互相通信，解除了容器之间通信对容器IP的依赖
  [运行mysql容器]
 
-`sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql`
+`sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql:5.7`
 
     -MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     
@@ -43,7 +43,7 @@ docker配置搭建php环境
 
  [运行redis容器]
 
-`sudo docker run --name myredis -p 6379:6379 -d redis` 
+`sudo docker run --name myredis -p 6379:6379 -d redis:3.2` 
     
 #### 查看所有容器
 `sudo docker ps  -a` 
