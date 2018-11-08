@@ -49,28 +49,16 @@ docker配置搭建php环境
     listen       80;
     server_name  localhost;
 
-    #charset koi8-r;
-    #access_log  /var/log/nginx/host.access.log  main;
-
     location / {
         root   /usr/share/nginx/html/blog/public;  ##/usr/share/nginx/html是工作目录 我的项目是blog根据自己的项目入口文件路径指定
         index  index.html index.htm index.php;
     }
 
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
 
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
     location ~ \.php$ {
       fastcgi_pass   myphp:9000; ##容器与容器之间建立连接必须指定对方ip 使用命令sudo docker inspect myphp可以看到最下面IPAddress参数就是该容器ip 我们在创建容器时已经通过--link的方式创建容器，我们可以使用被Link容器的别名进行访问，而不是通过IP，解除了对IP的依赖
       fastcgi_index  index.php;
