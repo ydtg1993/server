@@ -2,7 +2,7 @@
 echo '<p>php环境搭建成功</p>';
 
 try {
-    new PDO('mydb', 'root', '1234567');
+    new PDO('mysql:host=mydb;dbname=mysql', 'root', '1234567');
     echo '<p>mysql服务已开启</p>';
 } catch (Exception $e) {
     echo '<p>mysql扩展未装</p>';
