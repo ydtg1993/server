@@ -21,19 +21,21 @@ sudo docker images  查看已下载的所有镜像
     -v 将容器内路径挂载到宿主机路径
     --privileged=true 给容器特权,在挂载目录后容器可以访问目录以下的文件或者目录
     
-[运行nginx容器]sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx
+[运行nginx容器] 
+sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx
 
     -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
 
-[运行php容器]sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm
+[运行php容器]
+sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm
 
-[运行mysql容器]sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql
+[运行mysql容器]
+sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql
 
 #### 查看所有容器
 sudo docker ps  -a 
 
-挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件
-Default.conf
+###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx下的 /server/nginx/conf.d/Default.conf
 
     server {
     listen       80;
@@ -75,8 +77,9 @@ Default.conf
 进入容器
 sudo docker exec -ti myphp  /bin/bash
 
-docker-php-ext-install  xdebug[如果报错提示redis不存在就下载对应版本redis扩展包到改目录下 然后在执行命令]
+docker-php-ext-install  xdebug
 
+[如果报错提示xdebug不存在就下载对应版本xdebug扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
 sudo docker cp /server/php_lib/xdebug-2.6.1 myphp:/usr/src/php/ext/xdebug
 
 docker-php-ext-install  xdebug
