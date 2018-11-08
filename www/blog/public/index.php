@@ -2,8 +2,8 @@
 echo '<p>php环境搭建成功</p>';
 
 try {
-    new PDO('mysql:host=mydb;dbname=mysql', 'root', '1234567');
-    echo '<p>mysql服务已开启</p>';
+    new PDO('mysql:host=172.17.0.2;dbname=mysql', 'root', '1234567');
+    echo '<p>mysql扩展已开启</p>';
 } catch (Exception $e) {
     echo '<p>mysql扩展未装</p>';
 } finally {
@@ -15,7 +15,7 @@ try {
             throw new Exception('<p>redis扩展未装</p>');
         }
         $redis->close();
-        echo '<p>redis服务已开启</p>';
+        echo '<p>redis扩展已开启</p>';
     } catch (Exception $e) {
         echo '<p>redis扩展未装</p>';
     } finally {
