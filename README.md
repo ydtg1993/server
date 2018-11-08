@@ -77,7 +77,9 @@ docker配置搭建php环境
 
 进入容器
 `sudo docker exec -ti myphp  /bin/bash`
+
 `docker-php-ext-install pdo pdo_mysql` 安装pdo_mysql扩展
+
 `docker-php-ext-install  xdebug`
 
 [如果报错提示xdebug不存在就下载对应版本xdebug扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
