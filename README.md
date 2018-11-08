@@ -88,3 +88,5 @@ docker配置搭建php环境
 
 `docker-php-ext-install  xdebug`
 
+退出容器 重启容器`docker restart myphp`
+
