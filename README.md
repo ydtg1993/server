@@ -37,7 +37,7 @@ docker配置搭建php环境
     
  [运行php容器]
 
-`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
+`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm`
 
 [运行nginx容器] 
 
