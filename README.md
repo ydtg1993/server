@@ -38,6 +38,8 @@ docker配置搭建php环境
 
 `sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d -v /server/mysql:/var/lib mysql`
 
+    -MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
+    
 #### 查看所有容器
 `sudo docker ps  -a` 
 
