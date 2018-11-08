@@ -1,19 +1,20 @@
 # server
 docker配置搭建php环境
-配置目录server 放到服务器根目录
+
+###  0.配置拉取server 放到服务器根目录
 
 #### 1.下载镜像
 `sudo docker pull php:7.2-fpm`   冒号后选择版本
 
 `sudo docker pull nginx`
 
-`sudo docker pull mysql`
+`sudo docker pull mysql:5.7`
 
-`sudo docker pull redis`
+`sudo docker pull redis:3.2`
 
 `sudo docker images`  查看已下载的所有镜像
 
-#### 2.下载完成镜像后运行容器
+#### 2.下载完成镜像后运行容器[以下采用--link方式创建容器 注意创建顺序]
 
     -i 表示允许我们对容器进行操作
     -t 表示在新容器内指定一个为终端
@@ -30,9 +31,13 @@ docker配置搭建php环境
 
     -MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     
+ [运行redis容器]
+
+`sudo docker run --name myredis -p 6379:6379 -d redis` 
+    
  [运行php容器]
 
-`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --privileged=true  php:7.2-fpm`
+`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
 [运行nginx容器] 
 
@@ -73,7 +78,7 @@ docker配置搭建php环境
 
 进入容器
 `sudo docker exec -ti myphp  /bin/bash`
-
+`docker-php-ext-install pdo pdo_mysql` 安装pdo_mysql扩展
 `docker-php-ext-install  xdebug`
 
 [如果报错提示xdebug不存在就下载对应版本xdebug扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
