@@ -8,7 +8,7 @@ docker配置搭建php环境
 
 `sudo docker pull nginx`
 
-`sudo docker pull mysql`
+`sudo docker pull mysql:8.0`
 
 `sudo docker pull redis:3.2`
 
@@ -27,7 +27,7 @@ docker配置搭建php环境
     --link可以用来链接2个容器，使得源容器（被链接的容器）和接收容器（主动去链接的容器）之间可以互相通信，解除了容器之间通信对容器IP的依赖
  [运行mysql容器]
 
-`sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql`
+`sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0`
 
     -MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
 
@@ -76,7 +76,7 @@ docker配置搭建php环境
     
     }
     
-#### Php扩展库安装
+#### PHP扩展库安装
 
 进入容器
 `sudo docker exec -ti myphp  /bin/bash`
@@ -95,3 +95,10 @@ docker配置搭建php环境
 
 退出容器 重启容器`docker restart myphp`
 
+
+### 其它命令
+`docker stop $(docker ps -q)`停止所有容器
+
+`docker rm $(docker ps -aq)`删除所有容器
+
+`docker inspect myphp`查看容器配置信息
