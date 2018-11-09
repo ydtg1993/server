@@ -1,5 +1,5 @@
-# server
-docker配置搭建php环境
+# docker灵活的搭建php环境
+`使用docker搭建灵活的线上php环境 有时候不太需要一些别人已经集成了的包或者镜像 我们就可以使用以下方式逐一构建自己所需要的环境结构`
 
 ####  0.git拉取server项目 放到服务器根目录
 
@@ -100,8 +100,8 @@ docker配置搭建php环境
 
     注：
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
-    你可以多开一个服务端窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
-    然后在你的第一个窗口执行上条命令就成功了
+    你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
+    然后在你的第一个服务器窗口执行上条命令就成功了
 
 
 `docker restart myphp`  退出容器 重启容器
