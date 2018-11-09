@@ -83,13 +83,17 @@ docker配置搭建php环境
 
 `docker-php-ext-install pdo pdo_mysql` 安装pdo_mysql扩展
 
-`docker-php-ext-install  xdebug`
+`docker-php-ext-install  redis`
 
-[如果报错提示xdebug不存在就下载对应版本xdebug扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
+[如果报错提示redis不存在就下载对应版本redis扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
 
-`tar zxvf /server/php_lib/xdebug-2.6.1.tgz`
+`tar zxvf /server/php_lib/redis-4.1.0.tgz`
 
-`sudo docker cp /server/php_lib/xdebug-2.6.1 myphp:/usr/src/php/ext/xdebug`
+`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`
+
+    直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
+    你可以多开一个服务端窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
+    在你的第一个窗口执行上条命令就成功了
 
 `docker-php-ext-install  xdebug`
 
