@@ -56,7 +56,7 @@ docker配置搭建php环境
     --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
 
 
-#### 查看所有容器
+#### 查看所有容器运行成功 这里环境也就基本搭建完成了
 `sudo docker ps  -a` 
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
@@ -86,10 +86,9 @@ docker配置搭建php环境
     
 #### PHP扩展库安装
 
-进入容器
-`sudo docker exec -ti myphp  /bin/bash`
+`sudo docker exec -ti myphp  /bin/bash`  进入容器
 
-`docker-php-ext-install pdo pdo_mysql` 安装pdo_mysql扩展
+`docker-php-ext-install pdo pdo_mysql`  安装pdo_mysql扩展
 
 `docker-php-ext-install  redis`
 
@@ -104,14 +103,13 @@ docker配置搭建php环境
     你可以多开一个服务端窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
     然后在你的第一个窗口执行上条命令就成功了
 
-`docker-php-ext-install  xdebug`
 
-退出容器 重启容器`docker restart myphp`
+`docker restart myphp`  退出容器 重启容器
 
 
 ### 其它命令
-`docker stop $(docker ps -q)`停止所有容器
+`docker stop $(docker ps -q)`  停止所有容器
 
-`docker rm $(docker ps -aq)`删除所有容器
+`docker rm $(docker ps -aq)`  删除所有容器
 
-`docker inspect myphp`查看容器配置信息
+`docker inspect myphp`  查看容器配置信息
