@@ -2,9 +2,9 @@
 echo '<p>php环境搭建成功</p>';
 try {
     new PDO('mysql:host=mydb;dbname=mysql', 'root', '123456');
-    echo '<p>mysql扩展已开启</p>';
+    echo '<p>mysql连接成功</p>';
 } catch (Exception $e) {
-    echo '<p>mysql扩展未装 : '.$e->getMessage().'</p>';
+    echo '<p>mysql连接失败 : '.$e->getMessage().'</p>';
 } finally {
 
     try {
@@ -14,9 +14,9 @@ try {
             throw new Exception('');
         }
         $redis->close();
-        echo '<p>redis扩展已开启</p>';
+        echo '<p>redis连接成功</p>';
     } catch (Exception $e) {
-        echo '<p>redis扩展未装 : '.$e->getMessage().'</p>';
+        echo '<p>redis连接失败 : '.$e->getMessage().'</p>';
     } finally {
         var_dump(phpinfo());
     }
