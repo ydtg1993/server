@@ -59,7 +59,7 @@ docker配置搭建php环境
 #### 查看所有容器
 `sudo docker ps  -a` 
 
-###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx下的 /server/nginx/conf.d/Default.conf
+###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
     注：
     server {
     listen       80;
