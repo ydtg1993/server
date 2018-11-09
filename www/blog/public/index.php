@@ -1,6 +1,5 @@
 <?php
 echo '<p>php环境搭建成功</p>';
-
 try {
     new PDO('mysql:host=mydb;dbname=mysql', 'root', '123456');
     echo '<p>mysql扩展已开启</p>';
