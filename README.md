@@ -93,7 +93,7 @@ docker配置搭建php环境
 
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
     你可以多开一个服务端窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
-    在你的第一个窗口执行上条命令就成功了
+    然后在你的第一个窗口执行上条命令就成功了
 
 `docker-php-ext-install  xdebug`
 
