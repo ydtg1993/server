@@ -14,7 +14,7 @@ docker配置搭建php环境
 
 `sudo docker images`  查看已下载的所有镜像
 
-#### 2.下载完成镜像后运行容器[以下采用--link方式创建容器 注意创建顺序]
+#### 2.下载完成镜像后运行容器 [以下采用--link方式创建容器 注意创建顺序]
 
     -i 表示允许我们对容器进行操作
     -t 表示在新容器内指定一个为终端
@@ -39,11 +39,14 @@ docker配置搭建php环境
 
 `sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
+    如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
+
 [运行nginx容器] 
 
 `sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
 
     -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
+    --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
     
 #### 查看所有容器
 `sudo docker ps  -a` 
