@@ -2,7 +2,7 @@
     使用docker搭建灵活的线上php环境 有时候不太需要一些别人已经集成了的包或者镜像 
     我们就可以使用以下方式逐一构建自己所需要的环境结构
 
-####  1.git拉取server项目 放到服务器根目录
+####  1.git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录
 
 #### 2.下载镜像
 `sudo docker pull php:7.2-fpm`   冒号后选择版本
