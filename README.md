@@ -8,9 +8,9 @@
 
 `sudo docker pull nginx`
 
-`sudo docker pull mysql:8.0`
+`sudo docker pull mysql:8.0` 不需要本地数据库可忽略
 
-`sudo docker pull redis:3.2`
+`sudo docker pull redis:3.2` 不需要本地redis可忽略
 
 `sudo docker images`  查看已下载的所有镜像
 
