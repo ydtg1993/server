@@ -78,12 +78,12 @@
 
     location ~ \.php$ {
       fastcgi_pass   myphp:9000; 
-      `容器与容器之间建立连接必须指定对方ip 使用命令sudo docker inspect myphp可以看到最下面IPAddress参数就是该容器ip` 
-      `我们在创建容器时已经通过--link的方式创建容器，我们可以使用被Link容器的别名进行访问，而不是通过IP，解除了对IP的依赖`
+      ## 容器与容器之间建立连接必须指定对方ip 使用命令sudo docker inspect myphp可以看到最下面IPAddress参数就是该容器ip 
+      ## 我们在创建容器时已经通过--link的方式创建容器，我们可以使用被Link容器的别名进行访问，而不是通过IP，解除了对IP的依赖
       fastcgi_index  index.php;
       fastcgi_param  SCRIPT_FILENAME  /var/www/html/blog/public$fastcgi_script_name; 
-      `Myphp和mynginx的工作目录不同Nginx是/usr/share/nginx/html`
-      `PHP是/var/www/html 所以在创建容器时我已经将两个目录都挂载到宿主机相同目录上了/server/www 但这里不能使用宿主机的公共挂载目录`
+      ## Myphp和mynginx的工作目录不同Nginx是/usr/share/nginx/html
+      ## PHP是/var/www/html 所以在创建容器时我已经将两个目录都挂载到宿主机相同目录上了/server/www 但这里不能使用宿主机的公共挂载目录
       include        fastcgi_params;
     }
     
