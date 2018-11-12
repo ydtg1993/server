@@ -1,6 +1,7 @@
 version: "2"
 services:
   mydb:
+    container_name: "mydb"
     restart: always
     ports:
     - "3306:3306"
@@ -10,11 +11,13 @@ services:
       MYSQL_ROOT_PASSWORD: 123456
     image: mysql:8.0
   myredis:
+    container_name: "myredis"
     restart: always
     ports:
     - "6379:6379"
     image: redis:3.2
   myphp:
+    container_name: "myphp"
     restart: always
     ports:
     - "9000:9000"
@@ -26,6 +29,7 @@ services:
     - "myredis"
     image: php:7.2-fpm
   mynginx:
+    container_name: "mynginx"
     restart: always
     ports:
     - "80:80"
