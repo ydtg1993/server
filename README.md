@@ -61,7 +61,7 @@
 `sudo docker ps  -a` 
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
-![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_conf_explain.PNG)
+![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
     
 #### 4.PHP扩展库安装
 
@@ -105,16 +105,17 @@
     docker-compose是编排容器的。例如，你有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，那么每次启动的时候，你需要敲各个容器的启动参数，环境变量，容器命名，指定不同容器的链接参数等等一系列的操作，相当繁琐。而用了docker-composer之后，你就可以把这些命令一次性写在docker-composer.yml文件中，以后每次启动这一整个环境（含3个容器）的时候，你只要敲一个docker-composer up命令就ok了
 
  ####  1.安装docker-compose
-    `curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose`
+    curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     
-    `chmod +x /usr/local/bin/docker-compose`
+    chmod +x /usr/local/bin/docker-compose
     
-    `docker-compose --version`
+    docker-compose --version
 
 #### 2.一键部署环境
+    /server/compose/docker-compose.yml已经配置好了 直接输入命令
     cd /server/compose
-    docker-compose.yml已经配置好了 直接docker-compose up
+    docker-compose up
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
-    
-    对比上面运行容器目录来看docker_yml的配置结构就一目了然了
+
+    对比上面运行容器命令来看docker_yml的配置结构就一目了然了
     
