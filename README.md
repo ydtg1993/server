@@ -123,4 +123,5 @@
     创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
     然后进入到容器中查看自己所要的目录地址 例如: /etc/mysql/conf.d 退出容器 
     拷贝容器中所要的目录结构到宿主机 例如: sudo docker cp mydb:/etc/mysql /server/mysql
-    删除容器 创建新容器sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
+    删除容器 创建新容器时就可以挂载该目录了 方便以后对容器配置文件的修改
+    sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
