@@ -61,7 +61,7 @@
 `sudo docker ps  -a` 
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
-![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_conf_explain.PNG)
+![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
     
 #### 4.PHP扩展库安装
 
@@ -115,6 +115,6 @@
     cd /server/compose
     docker-compose.yml已经配置好了 直接docker-compose up
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
-    
+
     对比上面运行容器目录来看docker_yml的配置结构就一目了然了
     
