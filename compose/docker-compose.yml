@@ -1,36 +1,39 @@
-mydb:
-  restart: always
-  ports:
-  - "3306:3306"
-  volumes:
-  - /server/mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD : 123456
-  image: mysql:8.0
-redis :
-  restart: always
-  ports:
-  - "6379:6379"
-  image: redis:3.2
-phpfpm:
-  restart: always
-  ports:
-  - "9000:9000"
-  volumes:
-  - /server/www:/var/www/html
-  - /server/php:/usr/local/etc/php
-  links:
-  - "mydb"
-  - "myredis"
-  image: php:7.2-fpm
-nginx:
-  restart: always
-  ports:
-  - "80:80"
-  links:
-  - "myphp"
-  volumes:
-  - /server/www:/usr/share/nginx/html
-  - /server/nginx:/etc/nginx
-  - /server/logs/nginx.logs:/var/log/nginx
-  image: nginx:latest
+  version:"1"
+  server:
+    mydb:
+      restart: always
+      ports:
+      - "3306:3306"
+      volumes:
+      - /server/mysql:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD : 123456
+      image: mysql:8.0
+    myredis :
+      restart: always
+      ports:
+      - "6379:6379"
+      image: redis:3.2
+    myphp:
+      restart: always
+      ports:
+      - "9000:9000"
+      volumes:
+      - /server/www:/var/www/html
+      - /server/php:/usr/local/etc/php
+      links:
+      - "mydb"
+      - "myredis"
+      image: php:7.2-fpm
+    mynginx:
+      restart: always
+      ports:
+      - "80:80"
+      links:
+      - "myphp"
+      volumes:
+      - /server/www:/usr/share/nginx/html
+      - /server/nginx:/etc/nginx
+      - /server/logs/nginx.logs:/var/log/nginx
+      image: nginx:latest
+
