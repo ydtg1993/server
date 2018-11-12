@@ -116,5 +116,5 @@
     docker-compose.yml已经配置好了 直接docker-compose up
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
 
-    对比上面运行容器目录来看docker_yml的配置结构就一目了然了
+    对比上面运行容器命令来看docker_yml的配置结构就一目了然了
     
