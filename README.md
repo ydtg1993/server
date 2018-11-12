@@ -114,7 +114,7 @@
 #### 2.一键部署环境
     /server/compose/docker-compose.yml已经配置好了 直接输入命令
     cd /server/compose
-    docker-compose up
+    docker-compose up -d
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
 
     对比上面运行容器命令来看docker_yml的配置结构就一目了然了
