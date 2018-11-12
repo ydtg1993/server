@@ -36,5 +36,3 @@ services:
     - /server/nginx:/etc/nginx
     - /server/logs/nginx.logs:/var/log/nginx
     image: nginx:latest
-
-
