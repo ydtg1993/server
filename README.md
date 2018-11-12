@@ -99,10 +99,14 @@
     拷贝容器中所要的目录结构到宿主机 例如: sudo docker cp mydb:/etc/mysql /server/mysql
     删除容器 创建新容器时就可以挂载该目录了 方便以后对容器配置文件的修改
     sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
-    
+   
+   
 # docker-compose自动化构建
     完成以上步骤你就已经初步了解了docker的基本容器操作
-    docker-compose是编排容器的。例如，你有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，那么每次启动的时候，你需要敲各个容器的启动参数，环境变量，容器命名，指定不同容器的链接参数等等一系列的操作，相当繁琐。而用了docker-composer之后，你就可以把这些命令一次性写在docker-composer.yml文件中，以后每次启动这一整个环境（含3个容器）的时候，你只要敲一个docker-composer up命令就ok了
+    docker-compose是编排容器的。例如，你有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，
+    那么每次启动的时候，你需要敲各个容器的启动参数，环境变量，容器命名，指定不同容器的链接参数等等一系列的操作，
+    相当繁琐。而用了docker-composer之后，你就可以把这些命令一次性写在docker-composer.yml文件中，以后每次启动
+    这一整个环境（含3个容器）的时候，你只要敲一个docker-composer up命令就ok了
 
  ####  1.安装docker-compose
     curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
