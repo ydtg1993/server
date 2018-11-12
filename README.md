@@ -92,7 +92,7 @@
 
 `docker inspect myphp`  查看容器配置信息
 
-#### * 构筑自己的目录结构
+#### 构筑自己的目录结构
     你也可以构建自己所要的server目录结构
     创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
     然后进入到容器中查看自己所要的目录地址 例如: /etc/mysql/conf.d 退出容器 
