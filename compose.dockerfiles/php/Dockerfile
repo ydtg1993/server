@@ -18,8 +18,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
 # 将预先下载好的拓展包从宿主机拷贝进去
-COPY ./pkg/redis.tgz /home/redis.tgz
-COPY ./pkg/cphalcon.tar.gz /home/cphalcon.tar.gz
+COPY /server/php_lib/redis-4.1.0.tgz /home/redis.tgz
 # 安装 PECL 拓展，这里我们安装的是Redis
 RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 # 安装第三方拓展，这里是 Phalcon 拓展
