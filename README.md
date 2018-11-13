@@ -38,9 +38,8 @@
     --privileged=true 给容器特权,在挂载目录后容器可以访问目录以下的文件或者目录
     --link可以用来链接2个容器，使得源容器（被链接的容器）和接收容器（主动去链接的容器）之间可以互相通信，解除了容器之间通信对容器IP的依赖
     
----
-运行mysql容器
----
+    
+<运行mysql容器>
 
 `sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0`
 
@@ -48,20 +47,20 @@
     如果不需要搭建本地数据库直接下一步
 
 
- [运行redis容器]
+ <运行redis容器>
 
 `sudo docker run --name myredis -p 6379:6379 -d redis:3.2` 
 
     注:如果不需要搭建本地redis直接下一步
 
- [运行php容器]
+ <运行php容器>
 
 `sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
     注：如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
 
 
-[运行nginx容器] 
+<运行nginx容器> 
 
 `sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
     
