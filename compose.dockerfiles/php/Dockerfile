@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install opcache \
         && docker-php-ext-install mysqli \
+        && docker-php-ext-install redis \
         && rm -r /var/lib/apt/lists/*
 
 RUN pecl install redis \
