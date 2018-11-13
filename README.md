@@ -127,9 +127,25 @@
 
 #### 2.一键部署环境
     /server/compose/docker-compose.yml已经配置好了 直接输入命令
-    cd /server/compose
-    docker-compose up -d
+    
+    `cd /server/compose`
+    
+    `docker-compose up -d`
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
 
     对比上面运行容器命令来看docker_yml的配置结构就一目了然了
+    
+# dokcer-compose和dockerfile 完整构建
+    用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
+    实现真正的一键完成
+    
+    `cd /server/compose.dockerfiles`
+    
+    `docker-compose up -d`
+    
+    自定义dockerfile构建自定义镜像
+    ![](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
+    
+    
+    
     
