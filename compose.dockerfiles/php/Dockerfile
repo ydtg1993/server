@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 COPY redis.tgz /server/php_lib/redis-4.1.0.tgz
 RUN tar zxvf  redis.tgz
 # 安装 PECL 拓展，这里我们安装的是Redis
-RUN pecl install /server/php_lib/redis && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+RUN pecl install redis && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # 安装 Composer
 ENV COMPOSER_HOME /root/composer
