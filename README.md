@@ -144,7 +144,7 @@
     `docker-compose up -d`
     
     自定义dockerfile构建自定义镜像
-    ![](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
+![dockerfile](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
     
     
     
