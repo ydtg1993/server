@@ -21,9 +21,6 @@ RUN pecl install redis-4.0.1 \
 	&& pecl install xdebug-2.6.0 \
 	&& docker-php-ext-enable redis xdebug
 
-# 安装 Composer
-
-
 WORKDIR /data
 # Write Permission
 RUN usermod -u 1000 www-data
