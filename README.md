@@ -6,13 +6,13 @@
 ####  1.git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录
 
 #### 2.下载镜像
-`sudo docker pull php:7.2-fpm`   冒号后选择版本
+`sudo docker pull php:7.2-fpm`      冒号后选择版本
 
 `sudo docker pull nginx`
 
-`sudo docker pull mysql:8.0` 不需要本地数据库可忽略
+`sudo docker pull mysql:8.0`    不需要本地数据库可忽略
 
-`sudo docker pull redis:3.2` 不需要本地redis可忽略
+`sudo docker pull redis:3.2`    不需要本地redis可忽略
 
 `sudo docker images`  查看已下载的所有镜像
 
@@ -66,9 +66,9 @@
     
 #### 4.PHP扩展库安装
 
-`sudo docker exec -ti myphp  /bin/bash`  首先进入容器
+`sudo docker exec -ti myphp  /bin/bash`     首先进入容器
 
-`docker-php-ext-install pdo pdo_mysql`  安装pdo_mysql扩展
+`docker-php-ext-install pdo pdo_mysql`      安装pdo_mysql扩展
 
 `docker-php-ext-install  redis`
 
@@ -96,11 +96,11 @@
 `docker restart myphp`
 
 #### 其它命令
-`docker stop $(docker ps -q)`  停止所有容器
+`docker stop $(docker ps -q)`   停止所有容器
 
-`docker rm $(docker ps -aq)`  删除所有容器
+`docker rm $(docker ps -aq)`    删除所有容器
 
-`docker inspect myphp`  查看容器配置信息
+`docker inspect myphp`      查看容器配置信息
 
 #### 构筑自己的目录结构
     你也可以构建自己所要的server目录结构
@@ -128,9 +128,10 @@
 #### 2.一键部署环境
     /server/compose/docker-compose.yml已经配置好了 直接输入命令
     
-    `cd /server/compose`
+`cd /server/compose`
     
-    `docker-compose up -d`
+`docker-compose up -d`
+
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
 
     对比上面运行容器命令来看docker_yml的配置结构就一目了然了
@@ -139,13 +140,13 @@
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
     实现真正的一键完成
     
-    `cd /server/compose.dockerfiles`
+`cd /server/compose.dockerfiles`
     
-    `docker-compose up -d`
+`docker-compose up -d`
     
-    自定义dockerfile构建自定义镜像
 ![dockerfile](https://github.com/ydtg1993/server/blob/master/docker_file_explain.PNG)
-    
+   
+    自定义dockerfile构建自定义镜像
     
     
     
