@@ -20,14 +20,9 @@ RUN apt-get update && apt-get install -y \
 # 将预先下载好的拓展包从宿主机拷贝进去
 #COPY ./pkg/redis.tgz /server/php_lib/redis-4.1.0.tgz
 # 安装 PECL 拓展，这里我们安装的是Redis
-RUN pecl install /server/php_lib/redis-4.1.0.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
-# 安装第三方拓展，这里是 Phalcon 拓展
-RUN cd /home \
-    && tar -zxvf cphalcon.tar.gz \
-    && mv cphalcon-* phalcon \
-    && cd phalcon/build \
-    && ./install \
-    && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini
+RUN pecl install /server/php_lib/redis-4.1.0.tgz
+RUN echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+
 # 安装 Composer
 ENV COMPOSER_HOME /root/composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
