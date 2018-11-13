@@ -20,17 +20,6 @@
     ```` ':.          ':::::::::'                  ::::..
                        '.:::::'                    ':'````..
 
---------------------- 
-作者：ijijni 
-来源：CSDN 
-原文：https://blog.csdn.net/ijijni/article/details/82255094 
-版权声明：本文为博主原创文章，转载请附上博文链接！
-
---------------------- 
-作者：ijijni 
-来源：CSDN 
-原文：https://blog.csdn.net/ijijni/article/details/82255094 
-版权声明：本文为博主原创文章，转载请附上博文链接！
 
 ####  1.git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录
 
