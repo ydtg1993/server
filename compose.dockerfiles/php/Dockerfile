@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 # 将预先下载好的拓展包从宿主机拷贝进去
 
 # 安装 PECL 拓展，这里我们安装的是Redis
-RUN cd / && pecl install /server/php_lib/redis-4.1.0.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+RUN pecl install /server/php_lib/redis-4.1.0.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # 安装 Composer
 ENV COMPOSER_HOME /root/composer
