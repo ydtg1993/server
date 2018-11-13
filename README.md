@@ -51,13 +51,13 @@
 
 `sudo docker run --name myredis -p 6379:6379 -d redis:3.2` 
 
-    注:如果不需要搭建本地redis直接下一步
+    注: 如果不需要搭建本地redis直接下一步
 
  <运行php容器>
 
 `sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
-    注：如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
+    注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
 
 
 <运行nginx容器> 
@@ -69,11 +69,11 @@
     --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
 
 
-#### 查看所有容器运行成功 这里环境也就基本搭建完成了
-`sudo docker ps  -a` 
+`sudo docker ps  -a`    查看所有容器运行成功 这里环境也就基本搭建完成了
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
 ![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
+    
     
 #### 4.PHP扩展库安装
 
@@ -83,7 +83,7 @@
 
 `docker-php-ext-install  redis`
 
-[此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中]
+    注: 此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中
 
 ###### 方法一：
 
@@ -98,13 +98,11 @@
  
  ###### 方法二：
  
- [使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 快捷脚本来启用扩展]
+    注: 使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 快捷脚本来启用扩展
  
 `pecl install redis && docker-php-ext-enable redis`
 
-装完扩展 退出容器 重启容器
-
-`docker restart myphp`
+`docker restart myphp`      装完扩展 退出容器 重启容器
 
 #### \*其它命令
 `docker stop $(docker ps -q)`   停止所有容器
@@ -139,7 +137,7 @@
     docker-compose --version
 
 #### 2.一键部署环境
-    /server/compose/docker-compose.yml已经配置好了 直接输入命令
+    /server/compose/docker-compose.yml已经配置好了 直接输入命令即可
     
 `cd /server/compose`
     
@@ -147,8 +145,8 @@
 
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/docker_yml_explain.PNG)
 
-    对比上面运行容器命令来看docker_yml的配置结构就一目了然了
-    
+    对比上面运行容器命令来看docker_yml的配置结构和语义就一目了然了 
+   
    
 # dokcer-compose和dockerfile 完整构建
 ---
@@ -174,7 +172,7 @@
 ![dockerfile](https://github.com/ydtg1993/server/blob/master/docker_file_explain.PNG)
    
     自定义php的dockerfile构建自定义镜像同时安装扩展  完成了所有dockerfile配置后 docker-compose.yml文件就不需要
-    再用官方镜像 直接build：./php 
+    再用官方镜像image:php-fpm:7.2 而是直接build：./php 直接引用目录配置好的Dockerfile
        
 `cd /server/compose.dockerfiles`
     
