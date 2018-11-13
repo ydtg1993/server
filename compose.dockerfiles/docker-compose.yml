@@ -1,7 +1,7 @@
 version: "2"
 services:
   mydb:
-    build: ./php
+    build: ./mysql
     container_name: "mydb"
     restart: always
     ports:
@@ -17,7 +17,7 @@ services:
     ports:
       - "6379:6379"
   myphp:
-    build: ./mysql
+    build: ./php
     container_name: "myphp"
     restart: always
     ports:
