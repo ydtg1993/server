@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
 # 将预先下载好的拓展包从宿主机拷贝进去
-COPY redis.tgz /server/php_lib/redis-4.1.0.tgz
+COPY /server/php_lib/redis-4.1.0.tgz redis.tgz
 RUN tar zxvf  redis.tgz
 # 安装 PECL 拓展，这里我们安装的是Redis
 RUN pecl install redis && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
