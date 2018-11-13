@@ -76,9 +76,9 @@
 
 ###### 方法一：
 
-`tar zxvf /server/php_lib/redis-4.1.0.tgz`
+`tar zxvf /server/php_lib/redis-4.1.0.tgz`      解压已经下载好的redis扩展包
 
-`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`
+`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`       放到容器中
 
     注：
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
