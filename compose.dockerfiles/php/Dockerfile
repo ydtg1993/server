@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install opcache \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
-# 将预先下载好的拓展包从宿主机拷贝进去
 
-# 安装 PECL 拓展，这里我们安装的是Redis
-#RUN pecl install /server/php_lib/redis-4.1.0.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+RUN pecl install redis-4.0.1 \
+	&& pecl install xdebug-2.6.0 \
+	&& docker-php-ext-enable redis xdebug
 
 # 安装 Composer
 
