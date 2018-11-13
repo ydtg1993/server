@@ -18,9 +18,9 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
 # 将预先下载好的拓展包从宿主机拷贝进去
-RUN cd / && copy /server/php_lib/redis-4.1.0.tgz /home/redis.tgz
+
 # 安装 PECL 拓展，这里我们安装的是Redis
-RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+RUN cd / && pecl install /server/php_lib/redis-4.1.0.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # 安装 Composer
 ENV COMPOSER_HOME /root/composer
