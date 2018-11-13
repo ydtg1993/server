@@ -66,14 +66,14 @@
     
 #### 4.PHP扩展库安装
 
-`sudo docker exec -ti myphp  /bin/bash`  进入容器
+`sudo docker exec -ti myphp  /bin/bash`  首先进入容器
 
 `docker-php-ext-install pdo pdo_mysql`  安装pdo_mysql扩展
 
 `docker-php-ext-install  redis`
 
-[如果报错提示redis不存在就下载对应版本redis扩展包 并将其放到php容器扩展包目录下 然后在执行命令]
-
+[此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中]
+方法一：
 `tar zxvf /server/php_lib/redis-4.1.0.tgz`
 
 `sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`
@@ -82,9 +82,13 @@
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
     你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
     然后在你的第一个服务器窗口执行上条命令就成功了
+ 
+ 方法二：
+ [使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 快捷脚本来启用扩展]
+`pecl install redis && docker-php-ext-enable redis`
 
-
-`docker restart myphp`  退出容器 重启容器
+装完扩展 退出容器 重启容器
+`docker restart myphp`
 
 #### 其它命令
 `docker stop $(docker ps -q)`  停止所有容器
