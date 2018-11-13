@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install opcache \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
-
+#源码包不存在的扩展用pecl装
 RUN pecl install redis \
 	&& pecl install xdebug \
 	&& docker-php-ext-enable redis xdebug
