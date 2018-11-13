@@ -150,13 +150,31 @@
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
     实现真正的一键完成
     
+    目录:
+    server__|                       |__docker-compose.yml
+            |__compose.dockerfiles__| 
+                                    |__mysql__|Dockerfile 这里设置我们自定的dockerfile来构建mysql镜像
+                                    |           
+                                    |           
+                                    |__nginx__|Dockerfile 这里设置我们自定的dockerfile来构建nginx镜像
+                                    |          
+                                    |
+                                    |__php__|Dockerfile 这里设置我们自定的dockerfile来构建php镜像
+                                    |       |
+                                    |
+                                    |__redis__|Dockerfile 这里设置我们自定的dockerfile来构建redis镜像
+                                              | 
+    
+![dockerfile](https://github.com/ydtg1993/server/blob/master/docker_file_explain.PNG)
+   
+    自定义php的dockerfile构建自定义镜像同时安装扩展  完成了所有dockerfile配置后 docker-compose.yml文件就不需要
+    再用官方镜像 直接build：./php 
+       
 `cd /server/compose.dockerfiles`
     
 `docker-compose up -d`
     
-![dockerfile](https://github.com/ydtg1993/server/blob/master/docker_file_explain.PNG)
-   
-    自定义dockerfile构建自定义镜像
+
     
     
     
