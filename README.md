@@ -186,6 +186,7 @@
 `docker volume create portainer_data`
 
 `docker run -d -p 9010:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`   portainer内部使用9000端口 因为php已经使用了9000 所以映射到宿主机时端口要改成其他未占用端口
+
 直接访问http://[服务器ip]/#/init/admin
 
     
