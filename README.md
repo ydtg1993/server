@@ -11,12 +11,12 @@
              \    \         __/
               \____\_______/
 
- 
+
+##### 首先git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结果）
+
 ##  (一阶)使用docker逐一构建
 
-####  1.git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录
-
-#### 2.下载镜像
+#### 1.下载镜像
 `sudo docker pull php:7.2-fpm`      冒号后选择版本
 
 `sudo docker pull nginx`
@@ -27,7 +27,7 @@
 
 `sudo docker images`  查看已下载的所有镜像
 
-#### 3.下载完成镜像后运行容器 [以下采用--link方式创建容器 注意创建顺序]
+#### 2.下载完成镜像后运行容器 [以下采用--link方式创建容器 注意创建顺序]
     注：
     -i 表示允许我们对容器进行操作
     -t 表示在新容器内指定一个为终端
@@ -76,7 +76,7 @@
 ![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
     
     
-#### 4.PHP扩展库安装
+#### 3.PHP扩展库安装
 
 `sudo docker exec -ti myphp  /bin/bash`     首先进入容器
 
