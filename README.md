@@ -11,7 +11,8 @@
              \    \         __/
               \____\_______/
 
-    
+ 
+##  (一阶)使用docker逐一构建
 
 ####  1.git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录
 
@@ -120,7 +121,7 @@
     sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
    
    
-# docker-compose自动化构建
+##  (二阶)docker-compose自动化构建
 --- 
 
     完成以上步骤你就已经初步了解了docker的基本容器操作
@@ -148,7 +149,7 @@
     对比上面运行容器命令来看docker_yml的配置结构和语义就一目了然了 
    
    
-# dokcer-compose和dockerfile 完整构建
+##  (三阶)dokcer-compose和dockerfile 完整构建
 ---
 
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
@@ -177,6 +178,16 @@
 `cd /server/compose.dockerfiles`
     
 `docker-compose up -d`
+
+
+###### 远程docker客户端 portainer
+
+    以上就是docker所有的环境配置方式 最后推荐一个远程管理线上容器的客户端 portainer
+
+`docker volume create portainer_data`
+
+`docker run -d -p 9010:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`   portainer内部使用9000端口 因为php已经使用了9000 所以映射到宿主机时端口要改成其他未占用端口
+
     
 
     
