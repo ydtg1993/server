@@ -123,8 +123,6 @@
    
 ##  (二阶)docker-compose自动化构建
 
---- 
-
     完成以上步骤你就已经初步了解了docker的基本容器操作
     docker-compose是编排容器的。例如，你有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，
     那么每次启动的时候，你需要敲各个容器的启动参数，环境变量，容器命名，指定不同容器的链接参数等等一系列的操作，
@@ -151,8 +149,6 @@
    
    
 ##  (三阶)dokcer-compose和dockerfile 完整构建
-
----
 
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
     实现真正的一键完成
