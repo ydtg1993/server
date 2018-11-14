@@ -122,6 +122,7 @@
    
    
 ##  (二阶)docker-compose自动化构建
+
 --- 
 
     完成以上步骤你就已经初步了解了docker的基本容器操作
@@ -150,6 +151,7 @@
    
    
 ##  (三阶)dokcer-compose和dockerfile 完整构建
+
 ---
 
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
@@ -179,11 +181,11 @@
     
 `docker-compose up -d`
 
-
+    以上就是docker所有的环境配置方式
+    
 ---
-###### 远程docker客户端 portainer
 
-    以上就是docker所有的环境配置方式 最后推荐一个远程管理线上容器的客户端 portainer
+###### 最后推荐一个远程docker客户端 portainer 方便远程管理你的线上docker容器
 
 `docker volume create portainer_data`
 
