@@ -91,16 +91,19 @@
 
 `tar zxvf /server/php_lib/redis-4.1.0.tgz`      解压已经下载好的redis扩展包
 
-`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`       放到容器中
+`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`       将扩展放到容器中 再执行安装
 
     注：
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
     你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
-    然后在你的第一个服务器窗口执行上条命令就成功了
+    保持这个状态然后在你的第一个服务器窗口执行上条命令就成功了 
+    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会有/usr/src/php/ext这个目录)
  
  ###### 方法二：
  
-    注: 使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 快捷脚本来启用扩展
+    注: 
+    官方推荐使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 
+    快捷脚本来启用扩展
  
 `pecl install redis && docker-php-ext-enable redis`
 
@@ -115,10 +118,10 @@
 
 #### \*构筑自己的目录结构
     你也可以构建自己所要的server目录结构
-    创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
+    例如: 创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
     然后进入到容器中查看自己所要的目录地址 例如: /etc/mysql/conf.d 退出容器 
     拷贝容器中所要的目录结构到宿主机 例如: sudo docker cp mydb:/etc/mysql /server/mysql
-    删除容器 创建新容器时就可以挂载该目录了 方便以后对容器配置文件的修改
+    删除容器 创建新容器时就可以挂载该目录了 方便以后对容器的配置文件的修改
     sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
    
    
