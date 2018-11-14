@@ -12,7 +12,7 @@
               \____\_______/
 
 
-### \* 首先git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结果）
+### \* 首先git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）
 
 
 ##  (一阶)使用docker逐一构建
