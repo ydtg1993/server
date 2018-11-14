@@ -180,6 +180,7 @@
 `docker-compose up -d`
 
 
+---
 ###### 远程docker客户端 portainer
 
     以上就是docker所有的环境配置方式 最后推荐一个远程管理线上容器的客户端 portainer
