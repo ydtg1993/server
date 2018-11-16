@@ -28,7 +28,6 @@ services:
     volumes:
       - /server/www:/var/www/html
       - /server/php:/usr/local/etc/php
-      - /server/mysql/mysql_sock:/var/run/mysqld
     links:
       - "mydb"
       - "myredis"
