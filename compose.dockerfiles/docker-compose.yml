@@ -26,7 +26,7 @@ services:
       - "9000:9000"
     volumes:
       - /server/www:/var/www/html
-      - /server/php:/usr/local/etc/php
+      - /server/php/php.ini:/usr/local/etc/php/php.ini-development
     links:
       - "mydb"
       - "myredis"
