@@ -13,13 +13,10 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install zip \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install opcache \
-        && docker-php-ext-install mysqli \
-        && rm -r /var/lib/apt/lists/*
+        && docker-php-ext-install mysqli
 
 RUN pecl install redis \
-	&& pecl install xdebug
-
-RUN echo "extension=pdo_mysql" >> /usr/local/etc/php/conf.d/docker-php-ext-mysql.ini \
-    && echo "extension=redis" >> /usr/local/etc/php/conf.d/docker-php-ext-redis.ini
+	&& pecl install xdebug \
+	&& docker-php-ext-enable redis xdebug
 
 RUN usermod -u 1000 www-data
