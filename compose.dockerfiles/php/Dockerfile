@@ -20,5 +20,11 @@ RUN pecl install redis \
 	&& pecl install xdebug \
 	&& docker-php-ext-enable redis xdebug
 
+RUN chmod 755 /usr/local/bin/composer
+RUN echo "pdo_mysql.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini \
+    && echo "mysql.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini \
+    && echo "mysqli.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini
+
+
 WORKDIR /data
 RUN usermod -u 1000 www-data
