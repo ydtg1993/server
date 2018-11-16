@@ -57,10 +57,10 @@
 
  <运行php容器>
 
-`docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
+`docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php/php.ini:/usr/local/etc/php/php.ini-development --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
     注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
-
+    注意 挂载-v 一个空文件夹是会覆盖容器中的内容,所以配置文件要事先准备好
 
 <运行nginx容器> 
 
