@@ -119,7 +119,7 @@
 `docker inspect myphp`      查看容器配置信息
 
 #### \*构筑自己的目录结构
-    你也可以构建自己所要的server目录结构
+    你也可以构建自己所要的server目录结构 首先要知道挂载一个空文件夹会清空容器中文件夹下所有内容 所以应该先拷贝再挂载
     例如: 创建一个临时容器 sudo docker run --name mynginx -p 80:80 -it -d nginx
     进入到容器中查自己所要的配置文件目录地址 例如: /etc/nginx 退出容器 
     拷贝容器中所要的目录结构到宿主机 例如: docker cp mydb:/etc/nginx /server/nginx
