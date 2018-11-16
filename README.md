@@ -176,6 +176,7 @@
    
     自定义php的dockerfile构建自定义镜像同时安装扩展  完成了所有dockerfile配置后 docker-compose.yml文件就不需要
     再用官方镜像image:php-fpm:7.2 而是直接build：./php 直接引用目录配置好的Dockerfile
+    最后提示: 镜像一旦创建了下次docker-compose会直接取已有镜像而不会build创建 若你修改了Dockerfile配置请记得删除之前镜像
        
 `cd /server/compose.dockerfiles`
     
