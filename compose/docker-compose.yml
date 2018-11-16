@@ -10,7 +10,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-    image: mysql:8.0
+    image: mysql:5.7
   myredis:
     container_name: "myredis"
     restart: always
