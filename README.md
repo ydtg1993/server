@@ -22,7 +22,7 @@
 
 `docker pull nginx`
 
-`docker pull mysql:8.0`    不需要本地数据库可忽略
+`docker pull mysql:5.7`    不需要本地数据库可忽略
 
 `docker pull redis:3.2`    不需要本地redis可忽略
 
