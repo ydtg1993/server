@@ -120,11 +120,11 @@
 
 #### \*构筑自己的目录结构
     你也可以构建自己所要的server目录结构
-    例如: 创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
-    然后进入到容器中查看自己所要的目录地址 例如: /etc/mysql/conf.d 退出容器 
-    拷贝容器中所要的目录结构到宿主机 例如: sudo docker cp mydb:/etc/mysql /server/mysql
-    删除容器 创建新容器时就可以挂载该目录了 方便以后对容器的配置文件的修改
-    sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
+    例如: 创建一个临时容器 sudo docker run --name mynginx -p 80:80 -it -d nginx
+    进入到容器中查自己所要的配置文件目录地址 例如: /etc/nginx 退出容器 
+    拷贝容器中所要的目录结构到宿主机 例如: docker cp mydb:/etc/nginx /server/nginx
+    删除容器 创建新容器时就可以挂载该目录了 此后对nginx的配置文件的修改就可以直接在宿主机上快捷操作
+    docker run --name mynginx -d -p 80:80 -v /server/nginx:/etc/nginx --link myphp:myphp --privileged=true  nginx
    
    
 ##  (二阶)docker-compose自动化构建
