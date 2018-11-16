@@ -114,6 +114,8 @@
 
 `docker rm $(docker ps -aq)`    删除所有容器
 
+`docker rmi $(docker images -q)`    删除所有镜像
+
 `docker inspect myphp`      查看容器配置信息
 
 #### \*构筑自己的目录结构
