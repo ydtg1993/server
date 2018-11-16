@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pecl install redis \
 	&& pecl install xdebug \
-	&& docker-php-ext-enable redis xdebug
+	&& docker-php-ext-enable redis \
+	&& docker-php-ext-enable xdebug
 
 RUN usermod -u 1000 www-data
