@@ -43,7 +43,7 @@
     
 <运行mysql容器>
 
-`docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0`
+`docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7`
 
     注：-MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     如果不需要搭建本地数据库直接下一步
