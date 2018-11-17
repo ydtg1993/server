@@ -57,7 +57,7 @@
 
  <运行php容器>
 
-`docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php/php.ini:/usr/local/etc/php/php.ini-development --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
+`docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
     注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
     注意 挂载-v 一个空文件夹是会覆盖容器中的内容,所以配置文件要事先准备好
@@ -97,7 +97,7 @@
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
     你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
     保持这个状态然后在你的第一个服务器窗口执行上条命令就成功了 
-    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会有/usr/src/php/ext这个目录)
+    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会开放/usr/src/php/ext这个目录)
  
  ###### 方法二：
  
