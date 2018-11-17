@@ -27,7 +27,7 @@ services:
       - "9000:9000"
     volumes:
       - /server/www:/var/www/html
-      - /server/php/php.ini:/usr/local/etc/php/php.ini
+      - /server/php:/usr/local/etc/php
       - /etc/localtime:/etc/localtime:ro
     links:
       - "mydb"
