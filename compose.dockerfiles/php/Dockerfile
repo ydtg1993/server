@@ -18,5 +18,4 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install redis && docker-php-ext-enable redis \
 	&& pecl install xdebug && docker-php-ext-enable xdebug
 
-RUN echo "" >> /usr/local/etc/php/php.ini
 RUN usermod -u 1000 www-data
