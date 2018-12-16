@@ -188,8 +188,10 @@
     
 ---
 
-###### 当你在宿主机上需要用shell调度php执行脚本
+## \*当你在宿主机上需要用shell调度php执行脚本
 `docker exec -it myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
+
+
 
 ###### 最后推荐一个远程docker客户端 portainer 方便远程管理你的线上docker容器
 
