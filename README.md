@@ -160,8 +160,8 @@
     实现真正的一键完成
     
     目录:
-       server  |                          /  docker-compose.yml
-                  / compose.dockerfiles       | 
+       server  |                       /  docker-compose.yml
+               / compose.dockerfiles   | 
                                        / mysql / Dockerfile 这里设置我们自定的dockerfile来构建mysql镜像          
                                        |           
                                        / nginx / Dockerfile 这里设置我们自定的dockerfile来构建nginx镜像
