@@ -191,13 +191,7 @@
 
 
 
-###### 最后推荐一个远程docker客户端 portainer 方便远程管理你的线上docker容器
 
-`docker volume create portainer_data`
-
-`docker run -d -p 9010:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`   portainer内部使用9000端口 因为php已经使用了9000 所以映射到宿主机时端口要改成其他未占用端口
-
-直接访问http://[服务器ip]/#/init/admin
 
     
 
