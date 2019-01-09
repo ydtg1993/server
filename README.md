@@ -12,21 +12,21 @@
               \____\_______/
 
 
-### \* 首先git拉取[server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）
+## \* 首先clone [server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）
 
 
 ##  (一阶)使用docker逐一构建
 
 #### 1.下载镜像
-`sudo docker pull php:7.2-fpm`      冒号后选择版本
+`docker pull php:7.2-fpm`      冒号后选择版本
 
-`sudo docker pull nginx`
+`docker pull nginx`
 
-`sudo docker pull mysql:8.0`    不需要本地数据库可忽略
+`docker pull mysql:5.7`    不需要本地数据库可忽略
 
-`sudo docker pull redis:3.2`    不需要本地redis可忽略
+`docker pull redis:3.2`    不需要本地redis可忽略
 
-`sudo docker images`  查看已下载的所有镜像
+`docker images`  查看已下载的所有镜像
 
 #### 2.下载完成镜像后运行容器 [以下采用--link方式创建容器 注意创建顺序]
     注：
@@ -43,7 +43,7 @@
     
 <运行mysql容器>
 
-`sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0`
+`docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7`
 
     注：-MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     如果不需要搭建本地数据库直接下一步
@@ -51,27 +51,27 @@
 
  <运行redis容器>
 
-`sudo docker run --name myredis -p 6379:6379 -d redis:3.2` 
+`docker run --name myredis -p 6379:6379 -d redis:3.2` 
 
     注: 如果不需要搭建本地redis直接下一步
 
  <运行php容器>
 
-`sudo docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
+`docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
     注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
-
+    注意-v 挂载一个空文件夹是会覆盖容器中的内容,所以配置文件要事先准备好
 
 <运行nginx容器> 
 
-`sudo docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
+`docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
     
     注：
     -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
     --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
 
 
-`sudo docker ps  -a`    查看所有容器运行成功 这里环境也就基本搭建完成了
+`docker ps  -a`    查看所有容器运行成功 这里环境也就基本搭建完成了
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
 ![default.conf](https://github.com/ydtg1993/server/blob/master/nginx_default_explain.PNG)
@@ -79,7 +79,7 @@
     
 #### 3.PHP扩展库安装
 
-`sudo docker exec -ti myphp  /bin/bash`     首先进入容器
+`docker exec -ti myphp  /bin/bash`     首先进入容器
 
 `docker-php-ext-install pdo pdo_mysql`      安装pdo_mysql扩展
 
@@ -91,13 +91,13 @@
 
 `tar zxvf /server/php_lib/redis-4.1.0.tgz`      解压已经下载好的redis扩展包
 
-`sudo docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`       将扩展放到容器中 再执行安装
+`docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis`       将扩展放到容器中 再执行安装
 
     注：
     直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
     你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
     保持这个状态然后在你的第一个服务器窗口执行上条命令就成功了 
-    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会有/usr/src/php/ext这个目录)
+    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会开放/usr/src/php/ext这个目录)
  
  ###### 方法二：
  
@@ -114,15 +114,17 @@
 
 `docker rm $(docker ps -aq)`    删除所有容器
 
+`docker rmi $(docker images -q)`    删除所有镜像
+
 `docker inspect myphp`      查看容器配置信息
 
 #### \*构筑自己的目录结构
-    你也可以构建自己所要的server目录结构
-    例如: 创建一个临时容器 sudo docker run --name mydb -p 3306:3306 -it -d mysql:8.0
-    然后进入到容器中查看自己所要的目录地址 例如: /etc/mysql/conf.d 退出容器 
-    拷贝容器中所要的目录结构到宿主机 例如: sudo docker cp mydb:/etc/mysql /server/mysql
-    删除容器 创建新容器时就可以挂载该目录了 方便以后对容器的配置文件的修改
-    sudo docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /server/mysql:/etc/mysql -d mysql:8.0
+    你也可以构建自己所要的server目录结构 首先要知道挂载一个空文件夹会清空容器中文件夹下所有内容 所以应该先拷贝再挂载
+    例如: 创建一个临时容器 sudo docker run --name mynginx -p 80:80 -it -d nginx
+    进入到容器中查自己所要的配置文件目录地址 例如: /etc/nginx 退出容器 
+    拷贝容器中所要的目录结构到宿主机 例如: docker cp mydb:/etc/nginx /server/nginx
+    删除容器 创建新容器时就可以挂载该目录了 此后对nginx的配置文件的修改就可以直接在宿主机上快捷操作
+    docker run --name mynginx -d -p 80:80 -v /server/nginx:/etc/nginx --link myphp:myphp --privileged=true  nginx
    
    
 ##  (二阶)docker-compose自动化构建
@@ -185,6 +187,11 @@
     以上就是docker所有的环境配置方式
     
 ---
+
+## \*当你在宿主机上需要用shell调度php执行脚本
+`docker exec -it myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
+
+
 
 ###### 最后推荐一个远程docker客户端 portainer 方便远程管理你的线上docker容器
 

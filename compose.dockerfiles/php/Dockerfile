@@ -13,15 +13,10 @@ RUN apt-get update && apt-get install -y \
         && docker-php-ext-install zip \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install opcache \
-        && docker-php-ext-install mysqli \
-        && rm -r /var/lib/apt/lists/*
+        && docker-php-ext-install mysqli
 
-RUN pecl install redis \
-	&& pecl install xdebug \
-	&& docker-php-ext-enable redis xdebug
+RUN pecl install redis && docker-php-ext-enable redis \
+	&& pecl install xdebug && docker-php-ext-enable xdebug
 
-RUN echo "pdo_mysql.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini \
-    && echo "mysql.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini \
-    && echo "mysqli.default_socket=/var/run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini
-
+RUN echo "" >> /usr/local/etc/php/php.ini
 RUN usermod -u 1000 www-data
