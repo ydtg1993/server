@@ -160,19 +160,19 @@
     实现真正的一键完成
     
     目录:
-    server__|                       |__docker-compose.yml
-            |__compose.dockerfiles__| 
-                                    |__mysql__|Dockerfile 这里设置我们自定的dockerfile来构建mysql镜像
+    server |                       | docker-compose.yml
+            | compose.dockerfiles | 
+                                    |__mysql__| Dockerfile 这里设置我们自定的dockerfile来构建mysql镜像
                                     |           
                                     |           
-                                    |__nginx__|Dockerfile 这里设置我们自定的dockerfile来构建nginx镜像
+                                    |__nginx__| Dockerfile 这里设置我们自定的dockerfile来构建nginx镜像
                                     |          
                                     |
-                                    |__php__|Dockerfile 这里设置我们自定的dockerfile来构建php镜像
-                                    |       |
+                                    |__php__| Dockerfile 这里设置我们自定的dockerfile来构建php镜像
+                                    |       
                                     |
-                                    |__redis__|Dockerfile 这里设置我们自定的dockerfile来构建redis镜像
-                                              | 
+                                    |__redis__| Dockerfile 这里设置我们自定的dockerfile来构建redis镜像
+                                              
     
 ![dockerfile](https://github.com/ydtg1993/server/blob/master/image/docker_file_explain.PNG)
    
