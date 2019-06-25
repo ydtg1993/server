@@ -1,5 +1,5 @@
 [slave container]
-docker run --name mydb_slave -p 3307:3306 -v /server/mysql_slave:/var/lib/mysql -v /etc/localtime:/etc/localtime:ro -e MYSQL_ROOT_PASSWORD=scl19930330 -d mysql:5.7
+docker run --name mydb_slave -p 3307:3306 -v /server/mysql_slave:/var/lib/mysql -v /etc/localtime:/etc/localtime:ro -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
 
 [主库my.conf]
 [mysqld]
