@@ -185,8 +185,22 @@
     以上就是docker所有的环境配置方式
     
 ---
+## \*当你用自动化部署后想要更换其中一个容器
+    假设场景 在自动部署环境后发现nginx容器没有开启443端口
+    
+1.查询自动化部署的容器组环境所在网段    
+    查询所有网段 `docker network ls`
+    查询nginx所在网段 `docker inspect mynginx` 找到HostConfig.NetworkMode下所对应值composedockerfiles_default
 
-## \*当你在宿主机上需要用shell调度php执行脚本
+2.先删除nginx容器
+`docker stop mynginx && docker rm mynginx`
+
+3.重启一个新的nginx容器    
+`docker run --name mynginx -d -p 80:80 -p 443:443 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --net=composedockerfiles_default --privileged=true nginx`
+
+    在原来的基础上加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
+    
+## \*当你在宿主机上需要用shell调度php容器内执行脚本
 `docker exec -it myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
 
 
