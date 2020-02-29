@@ -189,13 +189,17 @@
     假设场景 在自动部署环境后发现nginx容器没有开启443端口
     
 #### 1.查询自动化部署的容器组环境所在网段
-查询所有网段 `docker network ls`
+
+查询所有网段命令 `docker network ls`
+
 查询nginx所在网段 `docker inspect mynginx` 找到HostConfig.NetworkMode下所对应值composedockerfiles_default
 
 #### 2.先删除nginx容器
+
 `docker stop mynginx && docker rm mynginx`
 
 #### 3.重启一个新的nginx容器    
+
 `docker run --name mynginx -d -p 80:80 -p 443:443 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --net=composedockerfiles_default --privileged=true nginx`
 
     在原来的基础上加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
