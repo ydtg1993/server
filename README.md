@@ -205,7 +205,7 @@
     在原来的基础上加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
     
 ## \*当你在宿主机上需要用shell调度php容器内执行脚本
-`docker exec -it myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
+`docker exec -i myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
 
 
 
