@@ -15,7 +15,7 @@ try {
         }
         $redis->close();
         echo '<p>redis连接成功</p>';
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         echo '<p>redis连接失败 : '.$e->getMessage().'</p>';
     } finally {
         var_dump(phpinfo());
