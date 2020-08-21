@@ -138,7 +138,8 @@
     docker run --name mynginx -d -p 80:80 -v /server/nginx:/etc/nginx --link myphp:myphp --privileged=true  nginx
    
    
-##  (二阶)docker-compose自动化构建
+##  阶段二
+docker-compose自动化构建
 
     完成以上步骤你就已经初步了解了docker的基本容器操作
     docker-compose是编排容器的。例如，你有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，
@@ -165,7 +166,8 @@
     对比上面运行容器命令来看docker_yml的配置结构和语义就一目了然了 
    
    
-##  (三阶)dokcer-compose和dockerfile 完整构建
+##  阶段三
+dokcer-compose和dockerfile 完整构建
 
     用了docker-compose实现一键式操作 但问题是PHP的扩展库还是得自己单独装 所以这里需要用到Dockerfile来构建自定义容器镜像
     实现真正的一键完成
