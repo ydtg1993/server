@@ -212,6 +212,8 @@ dokcer-compose和dockerfile 完整构建
     
 ---
 ### 其他补充
+
+## \*问题1
 当你用docker-compose自动化部署后想要更换其中一个容器
 
     假设场景 在自动部署环境后发现nginx容器没有开启443端口
@@ -236,7 +238,9 @@ dokcer-compose和dockerfile 完整构建
 
     在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
     
-## \*当你在宿主机上需要用cli模式运行php
+## \*问题2
+当你在宿主机上需要用cli模式运行php
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20exec%20--i%20myphp%20/bin/bash%20--c%20'/usr/local/bin/php%20/var/www/html/blog/public/index.php'-lightgrey" alt="执行命令">
 
 
