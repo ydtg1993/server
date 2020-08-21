@@ -17,7 +17,8 @@
 `首先git pull项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）`
 
 
-##  (一阶)使用docker逐一构建
+## 阶段一
+使用docker逐一构建
 
 #### 1.下载镜像
 `docker pull php:7.2-fpm`      冒号后选择版本
@@ -43,7 +44,9 @@
     --link可以用来链接2个容器，使得源容器（被链接的容器）和接收容器（主动去链接的容器）之间可以互相通信，解除了容器之间通信对容器IP的依赖
     
     
-<运行mysql容器>
+<p align="center">
+<img src="https://img.shields.io/badge/mysql%E5%AE%B9%E5%99%A8-docker-blue?labelColor=important&style=for-the-badge&logo=mysql&logoWidth=40" alt="启动mysql容器">
+</p>
 
 `docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7`
 
@@ -51,20 +54,26 @@
     如果不需要搭建本地数据库直接下一步
 
 
- <运行redis容器>
+<p align="center">
+<img src="https://img.shields.io/badge/redis%E5%AE%B9%E5%99%A8-docker-blue?labelColor=lightgrey&style=for-the-badge&logo=redis&logoWidth=40" alt="启动redis容器">
+</p>
 
 `docker run --name myredis -p 6379:6379 -d redis:3.2` 
 
     注: 如果不需要搭建本地redis直接下一步
 
- <运行php容器>
+<p align="center">
+<img src="https://img.shields.io/badge/php%E5%AE%B9%E5%99%A8-docker-blue?labelColor=success&style=for-the-badge&logo=php&logoWidth=40" alt="启动php容器">
+</p>
 
 `docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true  php:7.2-fpm`
 
     注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
     注意-v 挂载一个空文件夹是会覆盖容器中的内容,所以配置文件要事先准备好
 
-<运行nginx容器> 
+<p align="center">
+<img src="https://img.shields.io/badge/nginx%E5%AE%B9%E5%99%A8-docker-blue?labelColor=orange&style=for-the-badge&logo=nginx&logoWidth=40" alt="启动nginx容器">
+</p>
 
 `docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true  nginx`
     
