@@ -21,13 +21,15 @@
 使用docker逐一构建
 
 #### 1.下载镜像
-`docker pull php:7.2-fpm`      冒号后选择版本
 
-`docker pull nginx`
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20pull%20php:7.2--fpm-lightgrey" alt="php"> `冒号后选择版本`
 
-`docker pull mysql:5.7`    不需要本地数据库可忽略
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20pull%20nginx-lightgrey" alt="nginx">
 
-`docker pull redis:3.2`    不需要本地redis可忽略
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20pull%20mysql:5.7-lightgrey" alt="mysql"> `不需要本地数据库可忽略`
+
+`docker pull redis:3.2`
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20pull%20redis:3.2-lightgrey" alt="redis">    `不需要本地redis可忽略`
 
 `docker images`  查看已下载的所有镜像
 
