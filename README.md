@@ -206,7 +206,9 @@ dokcer-compose和dockerfile 完整构建
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-cd%20/server/compose.dockerfiles-lightgrey" alt="进入目录">    
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20up%20--d-lightgrey" alt="运行脚本">
-    以上就是docker所有的环境配置方式
+    
+    
+<h1 align="center">以上就是docker所有的环境配置方式</h1>
     
 ---
 ### 其他补充
