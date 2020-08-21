@@ -214,8 +214,8 @@ dokcer-compose和dockerfile 完整构建
 ### 其他补充
 
 ## \*问题1
-当你用docker-compose自动化部署后想要更换其中一个容器
 
+    当你用docker-compose自动化部署后想要更换其中一个容器
     假设场景 在自动部署环境后发现nginx容器没有开启443端口
     
 #### 1.查询自动化部署的容器组环境所在网段
@@ -236,10 +236,11 @@ dokcer-compose和dockerfile 完整构建
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20run%20----name%20mynginx%20--d%20--p%2080:80%20--p%20443:443%20--v%20/server/www:/usr/share/nginx/html%20--v%20/server/nginx:/etc/nginx%20--v%20/server/logs/nginx.logs:/var/log/nginx%20----link%20myphp:myphp%20----net=composedockerfiles__default%20----privileged=true%20nginx-lightgrey" alt="新nginx容器">
 
-    在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
+`在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default`
     
 ## \*问题2
-当你在宿主机上需要用cli模式运行php
+
+    当你在宿主机上需要用cli模式运行php
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20exec%20--i%20myphp%20/bin/bash%20--c%20'/usr/local/bin/php%20/var/www/html/blog/public/index.php'-lightgrey" alt="执行命令">
 
