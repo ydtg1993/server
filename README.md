@@ -110,12 +110,6 @@
 `将扩展放到容器中 再执行安装`
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20cp%20/server/php__lib/redis--4.1.0%20myphp:/usr/src/php/ext/redis-lightgrey" alt="拷贝">
-
-    注：
-    直接将扩展包放到容器ext目录里可能会报错Error: No such container:path: myphp:/usr/src/php/ext
-    你可以多开一个服务器窗口 进入php容器中执行docker-php-ext-install  redis此时报错error: /usr/src/php/ext/redis does not exist
-    保持这个状态然后在你的第一个服务器窗口执行上条命令就成功了 
-    (具体原因未知但确实要执行一次docker-php-ext-install命令 容器中才会开放/usr/src/php/ext这个目录)
  
  ###### 方法二：
  
