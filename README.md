@@ -169,8 +169,8 @@ docker-compose自动化构建
  ####  1.安装docker-compose
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-curl%20--L%20https://github.com/docker/compose/releases/download/1.8.1/docker--compose--%60uname%20--s%60--%60uname%20--m%60%20%3E%20/usr/local/bin/docker--compose-lightgrey" alt="安装docker-compose">    
  <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-chmod%20+x%20/usr/local/bin/docker--compose-lightgrey" alt="授权">   
-`查看版本信息`
-<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20----version-lightgrey" alt="查看版本信息">    
+
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20----version-lightgrey" alt="查看版本信息">  `查看版本信息`  
 
 #### 2.一键部署环境
     /server/compose/docker-compose.yml已经配置好了 直接输入命令即可
