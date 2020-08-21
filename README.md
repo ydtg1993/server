@@ -93,7 +93,7 @@
 
 `安装pdo_mysql扩展`
 
-<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--php--ext--install%20pdo%20pdo_mysql-lightgrey" alt="pdo_mysql扩展">
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--php--ext--install%20pdo%20pdo__mysql-lightgrey" alt="pdo_mysql扩展">
 
 `安装redis扩展`
 
