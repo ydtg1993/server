@@ -88,12 +88,15 @@
 #### 3.PHP扩展库安装
 
 `首先进入容器`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20exec%20--ti%20myphp%20%20/bin/bash-lightgrey" alt="进入容器"> 
 
 `安装pdo_mysql扩展`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--php--ext--install%20pdo%20pdo_mysql-lightgrey" alt="pdo_mysql扩展">
 
 `安装redis扩展`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--php--ext--install%20redis-lightgrey" alt="redis扩展">
 
     注: 此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中
@@ -167,6 +170,7 @@ docker-compose自动化构建
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-cd%20/server/compose-lightgrey" alt="进入目录">    
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20up%20--d-lightgrey" alt="运行脚本">
+
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/image/docker_yml_explain.PNG)
 
     对比上面运行容器命令来看docker_yml的配置结构和语义就一目了然了 
