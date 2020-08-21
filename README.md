@@ -234,9 +234,10 @@ dokcer-compose和dockerfile 完整构建
 
 #### 3.重启一个新的nginx容器 并且桥接相同网段 
 
+`在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20run%20----name%20mynginx%20--d%20--p%2080:80%20--p%20443:443%20--v%20/server/www:/usr/share/nginx/html%20--v%20/server/nginx:/etc/nginx%20--v%20/server/logs/nginx.logs:/var/log/nginx%20----link%20myphp:myphp%20----net=composedockerfiles__default%20----privileged=true%20nginx-lightgrey" alt="新nginx容器">
 
-`在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default`
     
 ## \*问题2
 
