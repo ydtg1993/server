@@ -48,7 +48,7 @@
 <p align="center">
 <img src="https://img.shields.io/badge/mysql%E5%AE%B9%E5%99%A8-docker-blue?labelColor=important&style=for-the-badge&logo=mysql&logoWidth=40" alt="启动mysql容器">
 </p>
-<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20run%20----name%20mydb%20--p%203306:3306%20--e%20MYSQL_ROOT_PASSWORD=123456%20--d%20mysql:5.7-lightgrey" alt="启动mysql容器命令">
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20run%20----name%20mydb%20--p%203306:3306%20--e%20MYSQL__ROOT__PASSWORD=123456%20--d%20mysql:5.7-lightgrey" alt="启动mysql容器命令">
 
     注：-MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
     如果不需要搭建本地数据库直接下一步
