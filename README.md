@@ -1,4 +1,4 @@
-<p align="center"><h1>docker 灵活的构建php环境</h1></p>
+<h1 align="center">docker 灵活的构建php环境</h1>
 
             使用docker搭建灵活的线上php环境 有时候你可能不太需要一些别人已经集成了的包或者镜像 
             我们就可以使用以下方式自己动手逐一构建自己所需要的环境结构 并在最后实现一键自动化部署 
@@ -14,7 +14,7 @@
 
 
     
-`首先clone [server](https://github.com/ydtg1993/server.git)项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）`
+`首先git pull项目 放到服务器根目录（到后面你也可以构建自己风格的环境结构）`
 
 
 ##  (一阶)使用docker逐一构建
