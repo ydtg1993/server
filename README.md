@@ -104,9 +104,11 @@
 ###### 方法一：
 
 `解压已经下载好的redis扩展包`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-tar%20zxvf%20/server/php__lib/redis--4.1.0.tgz-lightgrey" alt="解压">
 
 `将扩展放到容器中 再执行安装`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20cp%20/server/php__lib/redis--4.1.0%20myphp:/usr/src/php/ext/redis-lightgrey" alt="拷贝">
 
     注：
@@ -122,22 +124,28 @@
     快捷脚本来启用扩展
  
 `pecl安装redis`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-pecl%20install%20redis%20&&%20docker--php--ext--enable%20redis-lightgrey" alt="pecl安装">
 
 `装完扩展 exit退出容器 重启容器`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20restart%20myphp-lightgrey" alt="重启容器">
 
 #### \*其它常用命令
 `停止所有容器`
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20stop%20$(docker%20ps%20--q)-lightgrey" alt="停止所有容器">
 
-`删除所有容器`    
+`删除所有容器` 
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20rm%20$(docker%20ps%20--aq)-lightgrey" alt="删除所有容器">
 
-`删除所有镜像`    
+`删除所有镜像` 
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20rmi%20$(docker%20images%20--q)-lightgrey" alt="删除所有镜像">
 
-`查看容器配置信息`      
+`查看容器配置信息` 
+
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20inspect%20myphp-lightgrey" alt="查看容器配置信息">
 
 #### \*构筑自己的目录结构
@@ -207,28 +215,33 @@ dokcer-compose和dockerfile 完整构建
     以上就是docker所有的环境配置方式
     
 ---
-## \*当你用自动化部署后想要更换其中一个容器
+### 其他补充
+当你用docker-compose自动化部署后想要更换其中一个容器
+
     假设场景 在自动部署环境后发现nginx容器没有开启443端口
     
 #### 1.查询自动化部署的容器组环境所在网段
 
-查询所有网段命令 `docker network ls`
+`查询所有网段命令`
 
-查询nginx所在网段 `docker inspect mynginx` 找到HostConfig.NetworkMode下所对应值composedockerfiles_default
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20network%20ls-lightgrey" alt="查询所有网段命令">
+
+`查询nginx所在网段 找到HostConfig.NetworkMode下所对应值 例如:composedockerfiles_default`
+
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20inspect%20mynginx-lightgrey" alt="查询nginx所在网段">
 
 #### 2.先删除nginx容器
 
-`docker stop mynginx && docker rm mynginx`
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20stop%20mynginx%20&&%20docker%20rm%20mynginx-lightgrey" alt="删除容器nginx">
 
-#### 3.重启一个新的nginx容器    
+#### 3.重启一个新的nginx容器 并且桥接相同网段 
 
-`docker run --name mynginx -d -p 80:80 -p 443:443 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --net=composedockerfiles_default --privileged=true nginx`
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20run%20----name%20mynginx%20--d%20--p%2080:80%20--p%20443:443%20--v%20/server/www:/usr/share/nginx/html%20--v%20/server/nginx:/etc/nginx%20--v%20/server/logs/nginx.logs:/var/log/nginx%20----link%20myphp:myphp%20----net=composedockerfiles__default%20----privileged=true%20nginx-lightgrey" alt="新nginx容器">
 
-    在原来的基础上加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
+    在原来的基础上-p加上新端口443 并且使用网段桥接 --net=composedockerfiles_default 
     
 ## \*当你在宿主机上需要用shell调度php容器内执行脚本
-`docker exec -i myphp /bin/bash -c '/usr/local/bin/php /var/www/html/blog/public/index.php'`
-
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20exec%20--i%20myphp%20/bin/bash%20--c%20'/usr/local/bin/php%20/var/www/html/blog/public/index.php'-lightgrey" alt="执行命令">
 
 
 
