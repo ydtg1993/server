@@ -159,7 +159,7 @@
     这一整个环境（含3个容器）的时候，你只要敲一个docker-compose up命令就ok了
 
  ####  1. 安装docker-compose
-<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-curl%20--L%20https://github.com/docker/compose/releases/download/1.8.1/docker--compose--%60uname%20--s%60--%60uname%20--m%60%20%3E%20/usr/local/bin/docker--compose-lightgrey" alt="安装docker-compose">    
+<img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-curl%20--L%20%22https%3A%2F%2Fgithub.com%2Fdocker%2Fcompose%2Freleases%2Flatest%2Fdownload%2Fdocker--compose--%24(uname%20--s)--%24(uname%20--m)%22%20--o%20%2Fusr%2Flocal%2Fbin%2Fdocker--compose%20-lightgrey" alt="安装docker-compose">    
  <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-chmod%20+x%20/usr/local/bin/docker--compose-lightgrey" alt="授权">   
 
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20----version-lightgrey" alt="查看版本信息">  `查看版本信息`  
