@@ -79,7 +79,7 @@
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker%20ps%20--a-lightgrey" alt="查看所有容器">  `查看所有容器运行成功 这里环境也就基本搭建完成了`
 
 ###### 挂载目录后就可以不用进入容器中修改配置，直接在对应挂载目录下改配置文件 修改nginx配置到 /server/nginx/conf.d/Default.conf
-[default.conf](https://github.com/ydtg1993/server/blob/master/image/nginx_default_explain.PNG)
+![default.conf](https://github.com/ydtg1993/server/blob/master/image/nginx_default_explain.PNG)
     
     
 #### 3. PHP扩展库安装
@@ -171,7 +171,7 @@
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-cd%20/server/compose-lightgrey" alt="进入目录">    
 <img src="https://img.shields.io/badge/%E5%91%BD%E4%BB%A4-docker--compose%20up%20--d-lightgrey" alt="运行脚本">
 
-[docker_yml](https://github.com/ydtg1993/server/blob/master/image/docker_yml_explain.PNG)
+![docker_yml](https://github.com/ydtg1993/server/blob/master/image/docker_yml_explain.PNG)
 
     对比上面运行容器命令来看docker_yml的配置结构和语义就一目了然了 
    
@@ -194,7 +194,7 @@
                                               
                                               
     
-[dockerfile](https://github.com/ydtg1993/server/blob/master/image/docker_file_explain.PNG)
+![dockerfile](https://github.com/ydtg1993/server/blob/master/image/docker_file_explain.PNG)
    
     自定义php的dockerfile构建自定义镜像同时安装扩展  完成了所有dockerfile配置后 docker-compose.yml文件就不需要
     再用官方镜像image:php-fpm:7.2 而是直接build：./php 直接引用目录配置好的Dockerfile
