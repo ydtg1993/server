@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:8.1-fpm
 MAINTAINER goozp "946818508@qq.com"
 
 ENV TZ=Asia/Shanghai
