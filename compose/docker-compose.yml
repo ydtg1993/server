@@ -1,49 +1,48 @@
 version: "2"
 services:
   mydb:
+    build: ./mysql
     container_name: "mydb"
     restart: always
     ports:
       - "3306:3306"
     volumes:
-      - /server/mysql/conf:/etc/mysql
-      - /server/mysql/data:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
+      - ./../../server/mysql/conf:/etc/mysql
+      - ./../../server/mysql/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-    image: mysql:5.7
   myredis:
+    build: ./redis
     container_name: "myredis"
     restart: always
     ports:
       - "6379:6379"
     volumes:
-      - /server/redis:/data
-      - /etc/localtime:/etc/localtime:ro
-    image: redis:3.2
+      - ./../../server/redis:/data
   myphp:
+    build: ./php
     container_name: "myphp"
     restart: always
     ports:
       - "9000:9000"
     volumes:
-      - /server/www:/var/www/html
-      - /server/php:/usr/local/etc/php
-      - /etc/localtime:/etc/localtime:ro
+      - ./../../server/www:/var/www/html
+      - ./../../server/php/php.ini:/usr/local/etc/php/php.ini
+      - ./../../server/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./../../server/php/php-fpm.d:/usr/local/etc/php-fpm.d
     links:
       - "mydb"
       - "myredis"
-    image: php:7.2-fpm
   mynginx:
+    build: ./nginx
     container_name: "mynginx"
     restart: always
     ports:
       - "80:80"
+      - "443:443"
     links:
       - "myphp"
     volumes:
-      - /server/www:/usr/share/nginx/html
-      - /server/nginx:/etc/nginx
-      - /server/logs/nginx.logs:/var/log/nginx
-      - /etc/localtime:/etc/localtime:ro
-    image: nginx:latest
+      - ./../../server/www:/usr/share/nginx/html
+      - ./../../server/nginx:/etc/nginx
+      - ./../../server/logs/nginx.logs:/var/log/nginx

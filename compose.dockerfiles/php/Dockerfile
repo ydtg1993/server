@@ -12,8 +12,7 @@ RUN apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev l
         && docker-php-ext-install opcache \
         && docker-php-ext-install mysqli
 
-RUN pecl install redis && docker-php-ext-enable redis \
-	&& pecl install xdebug && docker-php-ext-enable xdebug
+RUN pecl install redis && docker-php-ext-enable redis
 
 RUN echo "" >> /usr/local/etc/php/php.ini
 RUN usermod -u 1000 www-data
