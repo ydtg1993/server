@@ -7,8 +7,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /server/mysql/conf:/etc/mysql
-      - /server/mysql/data:/var/lib/mysql
+      - ./../../server/mysql/conf:/etc/mysql
+      - ./../../server/mysql/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
   myredis:
@@ -18,7 +18,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /server/redis:/data
+      - ./../../server/redis:/data
   myphp:
     build: ./php
     container_name: "myphp"
@@ -26,8 +26,8 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - /server/www:/var/www/html
-      - /server/php/php.ini:/usr/local/etc/php/php.ini
+      - ./../../server/www:/var/www/html
+      - ./../../server/php/php.ini:/usr/local/etc/php/php.ini
     links:
       - "mydb"
       - "myredis"
@@ -40,6 +40,6 @@ services:
     links:
       - "myphp"
     volumes:
-      - /server/www:/usr/share/nginx/html
-      - /server/nginx:/etc/nginx
-      - /server/logs/nginx.logs:/var/log/nginx
+      - ./../../server/www:/usr/share/nginx/html
+      - ./../../server/nginx:/etc/nginx
+      - ./../../server/logs/nginx.logs:/var/log/nginx
