@@ -28,6 +28,8 @@ services:
     volumes:
       - ./../../server/www:/var/www/html
       - ./../../server/php/php.ini:/usr/local/etc/php/php.ini
+      - - ./../../server/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./../../server/php/php-fpm.d:/usr/local/etc/php-fpm.d
     links:
       - "mydb"
       - "myredis"
