@@ -9,6 +9,7 @@ services:
     volumes:
       - ./../../server/mysql/conf:/etc/mysql
       - ./../../server/mysql/data:/var/lib/mysql
+      - ./../../server/mysqlback:/var/lib/mysql/backup
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     networks:

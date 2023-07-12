@@ -4,16 +4,17 @@ MAINTAINER goozp "946818508@qq.com"
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libjpeg62-turbo-dev libpng-dev zip unzip curl vim \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
-        && docker-php-ext-install zip \
+RUN apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libjpeg62-turbo-dev libpng-dev zip unzip curl libcurl4-openssl-dev libonig-dev vim
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+        && docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-install pdo_mysql \
-        && docker-php-ext-install opcache \
-        && docker-php-ext-install mysqli
+        && docker-php-ext-install mysqli \
+        && docker-php-ext-install zip \
+        && docker-php-ext-install opcache
 
 RUN pecl install redis && docker-php-ext-enable redis
-RUN pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug
+RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 
 # 安装 ImageMagick
 RUN apt-get install -y libmagickwand-dev --no-install-recommends \
