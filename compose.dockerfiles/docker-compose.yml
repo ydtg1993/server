@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   mydb:
     build: ./mysql
@@ -11,6 +11,8 @@ services:
       - ./../../server/mysql/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - myserver_v1
   myredis:
     build: ./redis
     container_name: "myredis"
@@ -19,6 +21,8 @@ services:
       - "6379:6379"
     volumes:
       - ./../../server/redis:/data
+    networks:
+      - myserver_v1
   myphp:
     build: ./php
     container_name: "myphp"
@@ -30,9 +34,8 @@ services:
       - ./../../server/php/php.ini:/usr/local/etc/php/php.ini
       - ./../../server/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./../../server/php/php-fpm.d:/usr/local/etc/php-fpm.d
-    links:
-      - "mydb"
-      - "myredis"
+    networks:
+      - myserver_v1
   mynginx:
     build: ./nginx
     container_name: "mynginx"
@@ -40,9 +43,12 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    links:
-      - "myphp"
     volumes:
       - ./../../server/www:/usr/share/nginx/html
       - ./../../server/nginx:/etc/nginx
       - ./../../server/logs/nginx.logs:/var/log/nginx
+    networks:
+      - myserver_v1
+networks:
+  myserver_v1:
+    driver: bridge
