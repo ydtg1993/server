@@ -37,6 +37,9 @@ services:
       - ./../../server/php/php-fpm.d:/usr/local/etc/php-fpm.d
     networks:
       - myserver_v1
+    depends_on:
+      - mydb
+      - myredis
   mynginx:
     build: ./nginx
     container_name: "mynginx"
@@ -50,6 +53,8 @@ services:
       - ./../../server/logs/nginx.logs:/var/log/nginx
     networks:
       - myserver_v1
+    depends_on:
+      - myphp
 networks:
   myserver_v1:
     driver: bridge
