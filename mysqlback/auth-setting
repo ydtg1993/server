@@ -1,0 +1,10 @@
+CREATE USER 'new_user'@'%' IDENTIFIED BY 'new_password';
+CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'new_password';
+GRANT ALL PRIVILEGES ON *.* TO 'new_user'@'%' WITH GRANT OPTION;
+
+ALTER USER 'root'@'%' IDENTIFIED BY 'new_password';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+ALTER USER 'root'@'%' ACCOUNT LOCK;
+ALTER USER 'root'@'localhost' ACCOUNT LOCK;
+FLUSH PRIVILEGES;
