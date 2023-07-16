@@ -8,8 +8,8 @@ services:
       - "3306:3306"
     volumes:
       - ./../../server/mysql/conf:/etc/mysql
-      - ./../../server/mysql/data:/var/lib/mysql
-      - ./../../server/mysqlback:/var/lib/mysql/backup
+      - ./../../server/mysql/database:/var/lib/mysql
+      - ./../../server/mysqlback:/var/lib/mysqlback
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     networks:
