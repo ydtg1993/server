@@ -32,6 +32,6 @@ RUN cp -r /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d.backup
 RUN echo "" >> /usr/local/etc/php/php.ini
 COPY conf.d.backup.sh /conf.d.backup.sh
 RUN chmod +x /conf.d.backup.sh
-CMD ["/bin/bash", "-c","/conf.d.backup.sh"]
+ENTRYPOINT ["/bin/bash", "-c","/conf.d.backup.sh"]
 
 RUN usermod -u 1000 www-data
