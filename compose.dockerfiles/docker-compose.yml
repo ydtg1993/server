@@ -35,6 +35,7 @@ services:
       - ./../../server/php/php.ini:/usr/local/etc/php/php.ini
       - ./../../server/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./../../server/php/php-fpm.d:/usr/local/etc/php-fpm.d
+      - ./../../server/php/conf.d:/usr/local/etc/php/conf.d
     networks:
       - myserver_v1
     depends_on:

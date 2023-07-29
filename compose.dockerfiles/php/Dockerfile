@@ -21,9 +21,17 @@ RUN apt-get install -y libmagickwand-dev --no-install-recommends \
     && pecl install imagick \
     && docker-php-ext-enable imagick
 
+# 安装 composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
+# 备份容器内的 PHP 配置文件
+RUN cp -r /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d.backup
+
 RUN echo "" >> /usr/local/etc/php/php.ini
+COPY conf.d.backup.sh /conf.d.backup.sh
+RUN chmod +x /conf.d.backup.sh
+ENTRYPOINT ["/bin/bash", "-c","/conf.d.backup.sh"]
+
 RUN usermod -u 1000 www-data
