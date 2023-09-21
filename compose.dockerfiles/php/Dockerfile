@@ -15,7 +15,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 RUN pecl install redis && docker-php-ext-enable redis
 RUN pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
-
+RUN pecl install install https://pecl.php.net/get/swoole-4.5.2.tgz yes --with-openssl-dir=/usr/local/opt/openssl@1.1
 # 安装 ImageMagick
 RUN apt-get install -y libmagickwand-dev --no-install-recommends \
     && pecl install imagick \
