@@ -6,8 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libjpeg62-turbo-dev libpng-dev zip unzip curl libcurl4-openssl-dev libonig-dev vim
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-        && docker-php-ext-install -j$(nproc) gd \
+RUN docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install mysqli \
         && docker-php-ext-install zip \
