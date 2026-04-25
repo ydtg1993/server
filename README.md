@@ -134,8 +134,7 @@
             docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis
  
 
-
-<p align="center">其它常用命令</p>
+##### 其它常用命令
 
 `停止所有容器`
 
@@ -182,11 +181,12 @@
             docker-compose --version
 
 #### 2. 一键部署环境
-    `/server/compose/docker-compose.yml已经配置好了 直接输入命令即可`
     
             cd /server/compose
             
             docker-compose up -d
+            
+> /server/compose/docker-compose.yml已经配置好了可自行调整修改 compose启动即可
 
 ![docker_yml](https://github.com/ydtg1993/server/blob/master/image/docker_yml_explain.PNG)
 
