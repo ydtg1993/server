@@ -17,7 +17,7 @@
 <h3 align="center">阶段一 使用docker逐一构建</h3>
 <p align="center">☆ 首先拉取项目 放到服务器任意目录（到后面你也可以构建自己风格的环境结构）</p>
 
-> 以下采用--link方式创建容器 注意创建顺序
+> 以下采用--link方式链接容器 注意创建顺序 确保所需要连接的容器已经存在
     
 <p align="center">
 <img src="https://img.shields.io/badge/mysql%E5%AE%B9%E5%99%A8-docker-blue?labelColor=important&style=for-the-badge&logo=mysql&logoWidth=40" alt="启动mysql容器">
@@ -26,7 +26,9 @@
             docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
             
 > 冒号后选择mysql版本 不写版本号默认最新版
+> 
 > 注：-MYSQL_ROOT_PASSWORD=123456 给mysql设置初始密码
+> 
 > 如果不需要搭建本地数据库直接下一步
 
 
@@ -61,8 +63,10 @@
 >    --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
 
 
+
 ###### 查看所有容器运行成功 这里环境也就基本搭建完成了
             docker ps -a
+
 
 ###### 容器启动常用相关参数
 >    -i 表示允许我们对容器进行操作
@@ -105,10 +109,10 @@
 > 注: 此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中
 
  ###### 方法一：
- 
-    注: 
-    官方推荐使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 
-    快捷脚本来启用扩展
+  
+> 官方推荐使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable
+> 
+> 快捷脚本来启用扩展
  
 `pecl安装redis`
 
