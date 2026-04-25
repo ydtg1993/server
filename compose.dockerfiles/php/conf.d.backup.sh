@@ -1,4 +1,7 @@
 #!/bin/bash
+#这个脚本的设计目的，是解决挂载php扩展配置空目录覆盖容器默认配置的问题
+#当宿主机的 server/php/conf.d 目录为空或尚不存在时，容器内 PHP 原生的 conf.d
+# 目录会被完全覆盖为空，导致所有扩展的 .ini 文件丢失（如 gd.ini、mysqli.ini等），PHP 无法加载这些扩展，服务启动就会异常。
 backup_flag_file="/.backup_done"
 if [ ! -f "$backup_flag_file" ]; then
   while true; do

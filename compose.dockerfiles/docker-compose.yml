@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   mydb:
     build: ./mysql
@@ -9,6 +9,7 @@ services:
     volumes:
       - ./../../server/mysql/conf:/etc/mysql
       - ./../../server/mysql/data:/var/lib/mysql
+      - ./../../server/mysql/log:/var/log/mysql
       - ./../../server/mysqlback:/var/lib/mysqlback
     environment:
       MYSQL_ROOT_PASSWORD: 123456
@@ -21,9 +22,9 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./../../server/redis:/data
-      - ./../../server/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+      - ./../../server/redis/data:/data
+      - ./../../server/redis/redis.conf:/etc/redis/redis.conf
+    command: ["redis-server", "/etc/redis/redis.conf"]
     networks:
       - myserver_v1
   myphp:

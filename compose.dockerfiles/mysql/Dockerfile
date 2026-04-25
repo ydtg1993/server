@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:8.4
 
 # set timezome
 ENV TZ=Asia/Shanghai

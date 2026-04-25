@@ -13,47 +13,17 @@
                                       \____\_______/
 
 
-## 最新版本（2026-04）
-
-- **MySQL**: 8.4
-- **Redis**: 7.2
-- **PHP**: 8.4-fpm
-- **Nginx**: latest (≥1.25)
-
-## 升级说明
-
-从旧版 (MySQL 5.7 / Redis 3.2 / PHP 7.2) 升级到最新版需注意：
-
-1. **MySQL 8.4**
-   - 默认认证插件改为 `caching_sha2_password`，老客户端需在 `my.cnf` 设置 `default_authentication_plugin=mysql_native_password` 或升级客户端。
-   - 移除了 `query_cache` 等选项，检查 `/etc/mysql/my.cnf` 中是否有废弃指令。
-   - 建议使用 `mysql_upgrade` 工具升级数据（容器首次运行会自动升级）。
-
-2. **Redis 7.2**
-   - 配置文件与 3.2 不兼容，务必使用新版本默认 `redis.conf` 然后并排修改。
-   - 默认开启保护模式，确保 `bind` 和 `protected-mode` 设置正确，或设置密码。
-
-3. **PHP 8.4**
-   - 代码需要适配 PHP 7.x → 8.x 的不兼容变更（删除 `create_function`、`each` 等）。
-   - 扩展 `sodium` 已内置，不再需要单独安装；`xdebug` 等 PECL 扩展需安装兼容版本。
-   - `www.conf` 中的 `security.limit_extensions` 需包含 `.php`（或留空允许所有）。
-   - 配置文件应基于 8.4 默认模板重新生成。
-
 
 <h3 align="center">阶段一 使用docker逐一构建</h3>
 <p align="center">☆ 首先拉取项目 放到服务器任意目录（到后面你也可以构建自己风格的环境结构）</p>
 
-> docker已弃用 --link，改用自定义网络以保证容器间通过名称互访
-
-# 创建自定义网络（所有容器加入该网络即可通过容器名互访）
-
-            docker network create mynet
-                
+> 以下采用--link方式链接容器 注意创建顺序 确保所需要连接的容器已经存在
+    
 <p align="center">
 <img src="https://img.shields.io/badge/mysql%E5%AE%B9%E5%99%A8-docker-blue?labelColor=important&style=for-the-badge&logo=mysql&logoWidth=40" alt="启动mysql容器">
 </p>
 
-            docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 --network mynet -d mysql:8.4
+            docker run --name mydb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
             
 > 冒号后选择mysql版本 不写版本号默认最新版
 > 
@@ -66,7 +36,7 @@
 <img src="https://img.shields.io/badge/redis%E5%AE%B9%E5%99%A8-docker-blue?labelColor=lightgrey&style=for-the-badge&logo=redis&logoWidth=40" alt="启动redis容器">
 </p> 
 
-            docker run --name myredis -p 6379:6379 --network mynet -d redis:7.2
+            docker run --name myredis -p 6379:6379 -d redis:3.2
 
 > 注: 如果不需要搭建本地redis直接下一步
 
@@ -74,13 +44,10 @@
 <img src="https://img.shields.io/badge/php%E5%AE%B9%E5%99%A8-docker-blue?labelColor=success&style=for-the-badge&logo=php&logoWidth=40" alt="启动php容器">
 </p>
 
-            docker run -d -p 9000:9000 --name myphp --network mynet \
-                          -v /server/www:/var/www/html \
-                          -v /server/php:/usr/local/etc/php \
-                          php:8.4-fpm
+            docker run -d -p 9000:9000 --name myphp -v /server/www:/var/www/html -v /server/php:/usr/local/etc/php --link mydb:mydb --link myredis:myredis --privileged=true php:7.2-fpm
 
 
-> 注： 如果不需要搭建本地数据库或者redis可以省去 `--network mynet` 及对应的网络连接
+> 注： 如果不需要搭建本地数据库或者redis可以省去--link mydb:mydb --link myredis:myredis
 > 
 > 注意-v 挂载一个空文件夹是会覆盖容器中的内容,所以配置文件要事先准备好
 
@@ -88,16 +55,12 @@
 <img src="https://img.shields.io/badge/nginx%E5%AE%B9%E5%99%A8-docker-blue?labelColor=orange&style=for-the-badge&logo=nginx&logoWidth=40" alt="启动nginx容器">
 </p>
 
-            docker run --name mynginx -d --network mynet -p 80:80 \
-                          -v /server/www:/usr/share/nginx/html \
-                          -v /server/nginx:/etc/nginx \
-                          -v /server/logs/nginx.logs:/var/log/nginx \
-                          nginx:latest
+            docker run --name mynginx -d -p 80:80 -v /server/www:/usr/share/nginx/html -v /server/nginx:/etc/nginx -v /server/logs/nginx.logs:/var/log/nginx --link myphp:myphp --privileged=true nginx
 
     
-> -v语句冒号后是容器内的路径，将 nginx 的网页目录、配置目录、日志目录分别挂载到本地的 /server 目录下  
+>    -v语句冒号后是容器内的路径 我将nginx的网页项目目录 配置目录 日志目录分别挂载到了我事先准备好的/server目录下
 > 
-> 使用 `--network mynet` 后，可以直接通过容器名 `myphp` 访问 PHP 容器，无需指定 IP（旧版 `--link` 已废弃）
+>    --link myphp:myphp 将nginx容器和php容器连接 通过别名myphp就不再需要去指定myphp容器的ip了 
 
 
 
@@ -129,20 +92,27 @@
 ![default.conf](https://github.com/ydtg1993/server/blob/master/image/nginx_default_explain.PNG)
     
     
-#### PHP扩展库安装（更新至 PHP 8.4-fpm）
+#### PHP扩展库安装
 
 `首先进入容器`
 
             docker exec -ti myphp /bin/bash
 
-`PHP 8.4 镜像已内置常用扩展`
-pdo、pdo_mysql、mysqli、opcache、sodium 等扩展已默认安装并启用，无需再手动执行 docker-php-ext-install pdo pdo_mysql
+`安装pdo_mysql扩展`
 
-`安装额外扩展（以 Redis 为例）`
+            docker-php-ext-install pdo pdo_mysql
+
+`安装redis扩展`
+
+            docker-php-ext-install redis
+
+> 注: 此时报错提示redis.so 因为一些扩展并不包含在 PHP 源码文件中
 
  ###### 方法一：
   
-> 官方推荐使用 PECL
+> 官方推荐使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable
+> 
+> 快捷脚本来启用扩展
  
 `pecl安装redis`
 
@@ -153,21 +123,15 @@ pdo、pdo_mysql、mysqli、opcache、sodium 等扩展已默认安装并启用，
 
             docker restart myphp
 
-###### 方法二（备选）：手动编译安装：
+###### 方法二：
 
-`解压并复制到容器中`
+`解压已经下载好的redis扩展包`
 
             tar zxvf /server/php_lib/redis-4.1.0.tgz
+
+`将扩展放到容器中 再执行安装`
+
             docker cp /server/php_lib/redis-4.1.0 myphp:/usr/src/php/ext/redis
-
-`进入容器后编译安装`
-
-            docker exec -ti myphp /bin/bash
-            cd /usr/src/php/ext/redis
-            phpize
-            ./configure
-            make && make install
-            docker-php-ext-enable redis
  
 
 ##### 其它常用命令
@@ -251,7 +215,7 @@ pdo、pdo_mysql、mysqli、opcache、sodium 等扩展已默认安装并启用，
    
 > 自定义php的dockerfile构建自定义镜像同时安装扩展  完成了所有dockerfile配置后 docker-compose.yml文件就不需要
 > 
-> 再用官方镜像image:php-fpm:8.2 而是直接build：./php 直接引用目录配置好的Dockerfile
+> 再用官方镜像image:php-fpm:7.2 而是直接build：./php 直接引用目录配置好的Dockerfile
 > 
 > 最后提示: 镜像一旦创建了下次docker-compose会直接取已有镜像而不会build创建 若你修改了Dockerfile配置请记得删除之前镜像
        
