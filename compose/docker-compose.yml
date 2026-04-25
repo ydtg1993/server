@@ -27,6 +27,7 @@ services:
       - ./../../server/redis/data:/data
       - ./../../server/redis/redis.conf:/etc/redis/redis.conf
       - /etc/localtime:/etc/localtime:ro
+    command: ["redis-server", "/etc/redis/redis.conf"]
 
   myphp:
     image: php:8.4-fpm
